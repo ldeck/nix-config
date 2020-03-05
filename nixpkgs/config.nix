@@ -44,10 +44,10 @@
       counsel
       flycheck
       ivy
+      mac-pseudo-daemon
       magit
       projectile
       use-package
-      mac-pseudo-daemon
     ]));
 
     myEmacsConfig = writeText "default.el" ''
