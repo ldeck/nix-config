@@ -29,6 +29,7 @@
 	kotlin
 	nixops
 	nox
+	perl-5
 	scala
 	silver-searcher
       ];
