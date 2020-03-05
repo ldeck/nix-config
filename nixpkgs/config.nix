@@ -26,6 +26,7 @@
 	hello
 	jdk11
 	jq
+	kotlin
 	nixops
 	nox
 	scala
