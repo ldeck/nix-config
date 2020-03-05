@@ -11,12 +11,12 @@ self: super:
         home = "${self.jetbrains.jdk}/Contents/Home";
       };
     });
-    idea-ultimate = super.jetbrains.idea-ultimate.overrideAttrs (_: {
-      name = "idea-ultimate.2019.3.2";
-      src = super.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.3.2-no-jbr.tar.gz";
-	sha256 = "09lgdd7gkx94warjc7wah9w7s9lj81law8clavjjyjas8bhhf1hz";
-      };
-    });
+    # idea-ultimate = super.jetbrains.idea-ultimate.overrideAttrs (_: {
+    #   name = "idea-ultimate";
+    #   src = super.fetchurl {
+    #     url = "https://download.jetbrains.com/idea/ideaIU-2019.3.3-no-jbr.tar.gz";
+    # 	sha256 = "b6ef08b34e38b9d1f637b4179b5c145375f1604208e42e4a605711e368c18a0c";
+    #   };
+    # });
   };
 }
