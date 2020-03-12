@@ -15,6 +15,11 @@
           mkdir -p $out/etc/profile.d
           cp ${myProfile} $out/etc/profile.d/my-profile.sh
         '')
+	# bash scripts
+	argbash
+	bash-boilerplate
+
+	# general
 	aspell
 	bc
 	coreutils
@@ -54,6 +59,27 @@
       projectile
       use-package
     ]));
+    # =======================
+    # bash script derivations
+    # =======================
+
+    bash-boilerplate = stdenv.mkDerivation rec {
+      name = "bash-boilerplate-${version}";
+      version = "1.41";
+
+      src = fetchFromGitHub {
+        owner = "pforret";
+	repo = "bash-boilerplate";
+	rev = "7281a3705c82a92f1cddf4451d3d19a4a5bc2057";
+	sha256 = "1s8ilp0ki6fnri24i7814yv3y7gh1z0am37g1k7ilnikhgq5vbrw";
+      };
+
+      installPhase = ''
+        mkdir -p $out/bin;
+	cp script.sh $out/bin/bash-boilerplate;
+	chmod +x $out/bin/bash-boilerplate;
+      '';
+    };
 
     # =======================
     # oauth derivations
