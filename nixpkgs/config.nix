@@ -43,6 +43,7 @@
 	perl
 	scala
 	silver-searcher
+	taskwarrior
       ];
       pathsToLink = [ "/share/man" "/share/doc" "/bin" "/etc" "/Applications" ];
       extraOutputsToInstall = [ "man" "doc" ];
