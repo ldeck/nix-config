@@ -5,6 +5,7 @@
     myProfile = pkgs.writeText "my-profile" ''
       export PATH=$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/sbin:/bin:/usr/sbin:/usr/bin
       export MANPATH=$HOME/.nix-profile/share/man:/nix/var/nix/profiles/default/share/man:/usr/share/man
+      export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
     '';
     
     myPackages = with pkgs; buildEnv {
@@ -24,6 +25,7 @@
 	gdb
 	git
 	hello
+	jetbrains.idea-ultimate.2019.3
 	jdk11
 	jq
 	kotlin
