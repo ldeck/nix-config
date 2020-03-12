@@ -32,7 +32,7 @@
 	kryptco.kr
 	nixops
 	nox
-	perl-5
+	perl
 	scala
 	silver-searcher
       ];
