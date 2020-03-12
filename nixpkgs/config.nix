@@ -19,6 +19,9 @@
 	argbash
 	bash-boilerplate
 
+	# google cloud
+	google-cloud-sdk
+
 	# general
 	aspell
 	bc
