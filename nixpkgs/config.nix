@@ -48,20 +48,6 @@
       extraOutputsToInstall = [ "man" "doc" ];
     };
 
-    emacs = emacsWithPackages (epkgs: (with epkgs.melpaStablePackages; [
-      (runCommand "default.el" {} ''
-        mkdir -p $out/share/emacs/site-lisp
-	cp ${myEmacsConfig} $out/share/emacs/site-lisp/default.el
-      '')
-      company
-      counsel
-      flycheck
-      ivy
-      mac-pseudo-daemon
-      magit
-      projectile
-      use-package
-    ]));
     # =======================
     # bash script derivations
     # =======================
@@ -111,6 +97,41 @@
       };
     };
 
+    # =======================
+    # editor derivations
+    # =======================
+
+    emacs = emacsWithPackages (epkgs:
+      # CONFIG setup
+      [
+	(runCommand "default.el" {} ''
+          mkdir -p $out/share/emacs/site-lisp
+	  cp ${myEmacsConfig} $out/share/emacs/site-lisp/default.el
+        '')
+      ] ++
+
+      # ELPA packages
+      (with epkgs.elpaPackages; [
+        undo-tree
+      ]) ++
+
+      # MELPA packages
+      (with epkgs.melpaStablePackages; [
+        ag
+      	company
+      	counsel
+      	flycheck
+      	ivy
+      	mac-pseudo-daemon
+      	magit
+      	markdown-mode
+      	move-text
+      	projectile
+      	undo-propose
+      	use-package
+      	yaml-mode
+      ]));
+
     myEmacsConfig = writeText "default.el" ''
       ;; general options
       (tool-bar-mode -1)
@@ -123,11 +144,15 @@
         (require 'use-package))
       
       ;; load some packages
+      (use-package undo-tree
+        :config (global-undo-tree-mode))
+
       (use-package company
         :bind ("<C-tab>" . company-complete)
         :diminish company-mode
         :commands (company-mode global-company-mode)
         :defer 1
+	:init (setq company-dabbrev-downcase nil)
         :config (global-company-mode))
       
       (use-package counsel
@@ -162,12 +187,28 @@
         :init
         (setq magit-completing-read-function 'ivy-completing-read))
       
+      (use-package markdown-mode
+        :mode ("\\.markdown\\'" "\\.md\\'"))
+
+      (use-package move-text
+        :defer 1
+        :config (move-text-default-bindings))
+
       (use-package projectile
         :commands projectile-mode
         :bind-keymap ("C-c p" . projectile-command-map)
         :defer 5
         :config
         (projectile-global-mode))
+
+      (use-package undo-propose
+        :commands undo-propose
+	:defer 1
+	:init
+	:bind ("C-c u" . undo-propose))
+
+      (use-package yaml-mode
+        :mode ("\\.yml$" "\\.yaml$"))
     '';	  
   };
 }
