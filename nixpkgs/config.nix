@@ -19,7 +19,8 @@
 	argbash
 	bash-boilerplate
 
-	# google cloud
+	# cloud
+	cloudfoundry-cli
 	google-cloud-sdk
 
 	# general
