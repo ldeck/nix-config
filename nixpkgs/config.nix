@@ -37,6 +37,7 @@
 	jetbrains.idea-ultimate.2019.3
 	jdk11
 	jq
+	jump
 	kotlin
 	kryptco.kr
 	maven
