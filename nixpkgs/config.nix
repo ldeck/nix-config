@@ -39,6 +39,7 @@
 	jq
 	kotlin
 	kryptco.kr
+	maven
 	nixops
 	nox
 	perl
