@@ -127,6 +127,7 @@
       	company
       	counsel
       	flycheck
+      	format-all
       	ivy
       	mac-pseudo-daemon
       	magit
