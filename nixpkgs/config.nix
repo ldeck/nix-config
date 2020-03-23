@@ -23,6 +23,7 @@
 	# cloud
 	cloudfoundry-cli
 	google-cloud-sdk
+	terraform
 
 	# general
 	aspell
