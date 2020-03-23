@@ -17,6 +17,7 @@
         '')
 	# bash scripts
 	argbash
+	bash
 	bash-boilerplate
 
 	# cloud
