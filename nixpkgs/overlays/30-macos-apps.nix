@@ -43,8 +43,27 @@ Docker = self.installApplication rec {
     mkdir -p $out/bin
     ln -fs "$out/Applications/${name}.app/Contents/Resources/bin/docker" $out/bin/docker
     ln -fs "$out/Applications/${name}.app/Contents/Resources/bin/docker-compose/docker-compose" $out/bin/docker-compose
+    #todo: add etc/docker[-compose].[bash|zsh]-completion
   '';
   };
+
+Firefox = self.installApplication rec {
+  name = "Firefox";
+  version = "74.0";
+  sourceRoot = "Firefox.app";
+  src = super.fetchurl {
+    name = "Firefox-${version}.dmg";
+    url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-US/Firefox+${version}.dmg";
+    sha256 = "006qkc4bv65wf0iwc8qik0ismvdglp1s8k60scd29mgk1zd4z27i";
+  };
+  postInstall = ''
+    mkdir -p $out/bin
+    ln -fs $out/Applications/${name}.app/Contents/MacOS/firefox $out/bin/firefox
+    ln -fs $out/Applications/${name}.app/Contents/MacOS/firefox-bin $out/bin/firefox-bin
+  '';
+  description = "The Firefox web browser";
+  homepage = https://www.mozilla.org/en-US/firefox/;
+};
 
 Zotero = self.installApplication rec {
   name = "Zotero";
