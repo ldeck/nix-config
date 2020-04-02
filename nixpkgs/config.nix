@@ -121,7 +121,11 @@
         undo-tree
       ]) ++
 
-      # MELPA packages
+      (with epkgs.melpaPackages; [
+	dired-subtree
+      ]) ++
+
+      # MELPA stable packages
       (with epkgs.melpaStablePackages; [
         ag
       	company
@@ -172,6 +176,15 @@
           ("C-x l" . counsel-locate)
           ("M-y" . counsel-yank-pop)))
       
+      (use-package dired-subtree
+	:ensure t
+	:after dired
+        :bind (:map dired-mode-map
+                    ("i" . dired-subtree-insert)
+                    (";" . dired-subtree-remove)
+                    ("<tab>" . dired-subtree-toggle)
+                    ("<backtab>" . dired-subtree-cycle)))
+
       (use-package flycheck
         :defer 2
         :config (global-flycheck-mode))
