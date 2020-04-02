@@ -65,6 +65,19 @@ Firefox = self.installApplication rec {
   homepage = https://www.mozilla.org/en-US/firefox/;
 };
 
+Insomnia = self.installApplication rec {
+  name = "Insomnia";
+  version = "7.1.1";
+  sourceRoot = "Insomnia.app";
+  src = super.fetchurl {
+    name = "insomnia-${version}.dmg";
+    url = "https://github.com/getinsomnia/insomnia/releases/download/v${version}/Insomnia-${version}.dmg";
+    sha256 = "7718dd2c1a6ec0edafe36116d9123cda80b769abadc2d4fc5c5389922c7dfa6f";
+  };
+  description = "Cross-platform HTTP and GraphQL Client";
+  homepage = https://insomnia.rest;
+};
+
 Zotero = self.installApplication rec {
   name = "Zotero";
   version = "5.0.84";
