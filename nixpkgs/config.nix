@@ -8,7 +8,7 @@
       export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
     '';
 
-    myPackages = with pkgs; buildEnv {
+    myPackages = buildEnv {
       name = "my-packages";
       paths = [
 	(runCommand "profile" {} ''
@@ -42,6 +42,7 @@
 	jump
 	kotlin
 	kryptco.kr
+	markdown
 	maven
 	nixops
 	nox
@@ -102,6 +103,16 @@
 	platforms = platforms.linux ++ platforms.darwin;
       };
     };
+
+    # =======================
+    # symlinks
+    # =======================
+
+    markdown = emem.overrideAttrs (oldAttrs: rec {
+      installPhase = oldAttrs.installPhase + ''
+	ln -fs $out/bin/emem $out/bin/markdown
+      '';
+    });
 
     # =======================
     # editor derivations
