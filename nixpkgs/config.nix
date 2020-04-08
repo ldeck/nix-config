@@ -25,6 +25,12 @@
 	google-cloud-sdk
 	terraform
 
+	#java
+	jdk11
+
+	#js
+	yarn
+
 	# general
 	aspell
 	bc
@@ -37,13 +43,13 @@
 	git
 	hello
 	jetbrains.idea-ultimate.2019.3
-	jdk11
 	jq
 	jump
 	kotlin
 	kryptco.kr
 	markdown
 	maven
+	nginx
 	nixops
 	nox
 	perl
