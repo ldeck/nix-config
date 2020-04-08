@@ -25,11 +25,14 @@
 	google-cloud-sdk
 	terraform
 
-	#java
+	# java
 	jdk11
 
-	#js
+	# js
 	yarn
+
+	# devtools
+	geckodriver
 
 	# general
 	aspell
