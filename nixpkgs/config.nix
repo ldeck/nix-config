@@ -160,6 +160,7 @@
       (with epkgs.melpaStablePackages; [
 	ag
 	company
+	company-terraform
 	counsel
 	crux
 	expand-region
@@ -177,6 +178,8 @@
 	move-text
 	projectile
 	smartparens
+	terraform-doc
+	terraform-mode
 	undo-propose
 	use-package
 	which-key
@@ -322,6 +325,10 @@
 	    (require 'smartparens-config)
 	    (smartparens-global-mode 1)
 	    (show-paren-mode t)))
+
+      (use-package terraform-mode
+	:init
+	  (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
 
       (use-package undo-propose
 	:commands undo-propose
