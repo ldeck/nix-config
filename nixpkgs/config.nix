@@ -29,6 +29,7 @@
 	jdk11
 
 	# js
+	nodejs-10_x
 	yarn
 
 	# devtools
