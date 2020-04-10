@@ -178,6 +178,7 @@
         magit
         markdown-mode
         move-text
+        nix-mode
         projectile
         smartparens
         terraform-doc
@@ -310,6 +311,9 @@
       (use-package move-text
         :defer 1
         :config (move-text-default-bindings))
+
+      (use-package nix-mode
+        :mode "\\.nix\\'")
 
       (use-package projectile
         :commands projectile-mode
