@@ -6,16 +6,28 @@
       export PATH=$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/sbin:/bin:/usr/sbin:/usr/bin
       export MANPATH=$HOME/.nix-profile/share/man:/nix/var/nix/profiles/default/share/man:/usr/share/man
       export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
+    '';
 
-      function idownload {
-        if [ "$#" -ne 1 ] || ! [ -e $1 ]; then
+    idownload = pkgs.writeShellScriptBin "idownload" ''
+      if [ "$#" -ne 1 ] || ! [ -e $1 ]; then
           echo "Usage: idownload <file|dir>";
           return 1;
         fi
         find . -name '.*icloud' |\
         perl -pe 's|(.*)/.(.*).icloud|$1/$2|s' |\
         while read file; do brctl download "$file"; done
-      }
+    '';
+
+    jqo = pkgs.writeShellScriptBin "jqo" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .prefix,(.json|try fromjson catch ""),.suffix | select(length > 0)'
+    '';
+
+    jqj = pkgs.writeShellScriptBin "jqj" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | (.json|try fromjson catch "") | select(length > 0)'
+    '';
+
+    jqr = pkgs.writeShellScriptBin "jqr" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
     myPackages = buildEnv {
@@ -26,6 +38,11 @@
           cp ${myProfile} $out/etc/profile.d/my-profile.sh
       '')
 
+        # custom
+        idownload
+        jqo
+        jqj
+        jqr
 
         # bash scripts
         argbash
@@ -72,6 +89,7 @@
         scala
         silver-searcher
         taskwarrior
+        yq
       ];
       pathsToLink = [ "/share/man" "/share/doc" "/bin" "/etc" "/Applications" ];
       extraOutputsToInstall = [ "man" "doc" ];
