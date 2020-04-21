@@ -52,6 +52,7 @@
         # cloud
         cloudfoundry-cli
         google-cloud-sdk
+        cloud-sql-proxy
         terraform
 
         # java
