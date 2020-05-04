@@ -2,3 +2,4 @@
 .DS_Store
 /gcloud/
 /configstore/update-notifier-npm.json
+/yarn/global/
