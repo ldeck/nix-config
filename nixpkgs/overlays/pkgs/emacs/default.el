@@ -131,7 +131,7 @@
   :defer 5
   :config
   (projectile-global-mode)
-  (setq projectile-switch-project-action 'magit-status))
+  (setq projectile-switch-project-action 'projectile-find-file))
 
 (use-package smartparens
   :ensure t
