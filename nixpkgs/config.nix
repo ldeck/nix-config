@@ -177,6 +177,9 @@
 
       (with epkgs.melpaPackages; [
         dired-subtree
+        helm-flyspell
+        terraform-doc
+        undo-propose
       ]) ++
 
       # MELPA stable packages
@@ -192,7 +195,6 @@
         helm
         helm-ag
         helm-descbinds
-        helm-flyspell
         helm-projectile
         ivy
         mac-pseudo-daemon
@@ -202,9 +204,7 @@
         nix-mode
         projectile
         smartparens
-        terraform-doc
         terraform-mode
-        undo-propose
         use-package
         which-key
         yaml-mode
