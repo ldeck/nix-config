@@ -70,11 +70,12 @@ Firefox = self.installApplication rec {
 GoogleChrome = self.installApplication rec {
   name = "GoogleChrome";
   appname = "Google Chrome";
-  version = "81.0.4044.92";
+  version = "81.0.4044.138";
   sourceRoot = "Google Chrome.app";
   src = super.fetchurl {
     url = "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg";
-    sha256 = "45e8a754fb80313f936a39db4381a736435c6b86d05c94d1259cba3e92471a5c";
+    # https://www.slimjet.com/chrome/google-chrome-old-version.php
+    sha256 = "1npjsgwcva0yyp4jaq3mx9ixf4kx25wpx01cdjf3k0nzjn340w5q";
   };
   description = "The Google Chrome browser";
   homepage = "https://www.google.com/chrome/";
