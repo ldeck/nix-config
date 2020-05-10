@@ -24,12 +24,12 @@ installApplication =
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "2.2.0.4";
-  revision = "43472";
+  version = "2.2.0.5";
+  revision = "43884";
   sourceRoot = "Docker.app";
   src = super.fetchurl {
     url = "https://download.docker.com/mac/stable/${revision}/Docker.dmg";
-    sha256 = "defb095871ef260ccdb77d9960ed8510bdb288124025404f6543b94ec683e160";
+    sha256 = "14dgvicl56lzr0p0g1ha7zkqv7wk3kxl90a6zk2cswyxn93br04s";
     # https://github.com/Homebrew/homebrew-cask/blob/master/Casks/docker.rb
   };
   description = ''
