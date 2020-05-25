@@ -95,6 +95,20 @@ Insomnia = self.installApplication rec {
   homepage = https://insomnia.rest;
 };
 
+IntelliJIDEA = self.installApplication rec {
+  name = "IntelliJIDEA";
+  appname = "IntelliJ IDEA";
+  version = "2020.1.1";
+  sourceRoot = "IntelliJ IDEA.app";
+  src = super.fetchurl {
+    url = "https://download.jetbrains.com/idea/ideaIU-${version}.dmg";
+    sha256 = "0g2savqmmh7jcmlk70yg05sfylanvbydzsxq3b9dsy6gihvrcdv7";
+  };
+  description = "The most intelligent JVM IDE";
+  homepage = https://www.jetbrains.com/idea/;
+  appcast = https://www.jetbrains.com/idea/download/other.html;
+};
+
 Zotero = self.installApplication rec {
   name = "Zotero";
   version = "5.0.84";
