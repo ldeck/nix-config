@@ -49,13 +49,12 @@ Docker = self.installApplication rec {
 
 Firefox = self.installApplication rec {
   name = "Firefox";
-  version = "76.0";
+  version = "76.0.1";
   sourceRoot = "Firefox.app";
   src = super.fetchurl {
     name = "Firefox-${version}.dmg";
     url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-US/Firefox+${version}.dmg";
-    sha256 = "c71f44c038bc78cd9e310f367bcccb1e1dffdda2e3196491ffea1cd456e86b0d";
-    # sha256 = "03bbx1bd877azy8n86g3lbfzy78yrg67ndhg66gcsy5w730487y7";
+    sha256 = "0la4dmvfzjn1ivmnkzvzw9gl9h69pcir8shbs72hg642pcxc5850";
   };
   postInstall = ''
     mkdir -p $out/bin
@@ -64,7 +63,7 @@ Firefox = self.installApplication rec {
   '';
   description = "The Firefox web browser";
   homepage = https://www.mozilla.org/en-US/firefox/;
-  appcast = "http://releases.mozilla.org/pub/firefox/releases/${version}/";
+  appcast = https://www.mozilla.org/en-US/firefox/releases/;
 };
 
 GoogleChrome = self.installApplication rec {
