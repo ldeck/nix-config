@@ -19,6 +19,28 @@
         while read file; do brctl download "$file"; done
     '';
 
+    java_home = pkgs.writeShellScriptBin "java_home" ''
+      if [ "$#" -ne 2 ] || [ "$1" != "-v" ] || [ "$2" -lt 8 ]; then
+        echo "Usage: $0 -v <version>";
+        exit 1;
+      fi
+      JDK08_HOME="${pkgs.jdk}/lib/openjdk"
+      JDK11_HOME="${pkgs.jdk11}/lib/openjdk"
+      JDK14_HOME="${pkgs.jdk14}/lib/openjdk"
+      case "$2" in
+        8)
+          JDK=$JDK08_HOME
+          ;;
+        11)
+          JDK=$JDK11_HOME
+          ;;
+        *)
+          JDK=$JDK14_HOME
+          ;;
+        esac
+        echo "$JDK"
+    '';
+
     jqo = pkgs.writeShellScriptBin "jqo" ''
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .prefix,(.json|try fromjson catch ""),.suffix | select(length > 0)'
     '';
@@ -50,6 +72,7 @@
 
         # custom
         idownload
+        java_home
         jqo
         jqj
         jqr
