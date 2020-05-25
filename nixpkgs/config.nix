@@ -31,6 +31,15 @@
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
+    sudo-with-touch = pkgs.writeShellScriptBin "sudo-with-touch" ''
+      primary=$(cat /etc/pam.d/sudo | head -2 | tail -1 | awk '{$1=$1}1' OFS=",")
+      if [ "auth,sufficient,pam_tid.so" != "$primary" ]; then
+        newsudo=$(mktemp)
+        awk 'NR==2{print "auth       sufficient     pam_tid.so"}7' /etc/pam.d/sudo > $newsudo
+        sudo mv $newsudo /etc/pam.d/sudo
+      fi
+    '';
+
     myPackages = buildEnv {
       name = "my-packages";
       paths = [
