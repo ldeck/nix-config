@@ -75,6 +75,7 @@
         emscripten
         ffmpeg
         gdb
+        go
         git
         hello
         jetbrains.idea-ultimate.2019.3
