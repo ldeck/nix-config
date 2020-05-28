@@ -7,6 +7,15 @@
       export MANPATH=$HOME/.nix-profile/share/man:/nix/var/nix/profiles/default/share/man:/usr/share/man
       export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
       export CL_HOME=~/Documents/work/corelogic
+
+      function cdmkdir() {
+        if [[ $# -ne 1 ]]; then
+          echo "Usage: cdmkdir <dir>"
+          exit 1
+        fi
+        mkdir -p $1
+        cd $1
+      }
     '';
 
     idownload = pkgs.writeShellScriptBin "idownload" ''
