@@ -85,6 +85,7 @@
         jqo
         jqj
         jqr
+        sudo-with-touch
 
         # bash scripts
         argbash
