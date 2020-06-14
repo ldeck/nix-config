@@ -221,6 +221,7 @@
       (with epkgs.melpaPackages; [
         dired-subtree
         helm-flyspell
+        dtrt-indent
         terraform-doc
         undo-propose
       ]) ++

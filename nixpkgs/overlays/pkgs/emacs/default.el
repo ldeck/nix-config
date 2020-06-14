@@ -133,6 +133,12 @@
   (projectile-global-mode)
   (setq projectile-switch-project-action 'projectile-find-file))
 
+(use-package dtrt-indent
+  :ensure t
+  :config
+  (autoload 'dtrt-indent-mode "dtrt-indent" "Adapt to foreign indentation offsets" t)
+  (add-hook 'c-mode-common-hook 'dtrt-indent-mode))
+
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
