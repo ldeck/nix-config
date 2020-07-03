@@ -66,6 +66,20 @@ Firefox = self.installApplication rec {
   appcast = https://www.mozilla.org/en-US/firefox/releases/;
 };
 
+GIMP = self.installApplication rec {
+  name = "GIMP";
+  majorMinorVersion = "2.10";
+  version = "${majorMinorVersion}.14";
+  sourceRoot = "GIMP-${majorMinorVersion}.app";
+  src = super.fetchurl {
+    url = "https://download.gimp.org/pub/gimp/v${majorMinorVersion}/osx/gimp-${version}-x86_64.dmg";
+    sha256 = "0cm63vrmrksm7jq1yrxr16wry45yfqx23hqv5363hb04l4wiwqv0";
+  };
+  description = "The Free & Open Source Image Editor";
+  homepage = "https://www.gimp.org";
+  appcast = "https://download.gimp.org/pub/gimp/v#{majorMinorVersion}/osx/";
+};
+
 GoogleChrome = self.installApplication rec {
   name = "GoogleChrome";
   appname = "Google Chrome";
