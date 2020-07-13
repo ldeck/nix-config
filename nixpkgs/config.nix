@@ -107,6 +107,7 @@
 
         # devtools
         geckodriver
+        nodePackages.prettier
 
         # general
         aspell
