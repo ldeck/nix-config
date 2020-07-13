@@ -66,6 +66,19 @@ Firefox = self.installApplication rec {
   appcast = https://www.mozilla.org/en-US/firefox/releases/;
 };
 
+FreeRuler = self.installApplication rec {
+  name = "FreeRuler";
+  version = "2.0.3";
+  sourceRoot = "Free Ruler.app";
+  src = super.fetchurl {
+    url = "https://github.com/pascalpp/FreeRuler/releases/download/v${version}/free-ruler-${version}.zip";
+    sha256 = "17fsjb2x5037k31ig4czgnv6s3dii3kjkczdpak4kqhkq43qjhma";
+  };
+  description = "A ruler application for macOS";
+  homepage = "http://www.pascal.com/software/freeruler/";
+  appcast = "https://github.com/pascalpp/FreeRuler/releases";
+};
+
 GIMP = self.installApplication rec {
   name = "GIMP";
   majorMinorVersion = "2.10";
