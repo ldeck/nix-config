@@ -121,6 +121,20 @@ Insomnia = self.installApplication rec {
   appcast = "https://api.insomnia.rest/changelog.json?app=com.insomnia.app";
 };
 
+InsomniaDesigner = self.installApplication rec {
+  name = "InsomniaDesigner";
+  appname = "Insomnia Designer";
+  version = "2020.3.3";
+  sourceRoot = "Insomnia Designer.app";
+  src = super.fetchurl {
+    url = "https://github.com/Kong/insomnia/releases/download/designer%40${version}/Insomnia.Designer-${version}.dmg";
+    sha256 = "2bc0b19dda57ac4299a14c0e8e887c573415a1fa590be6bea93da5ed3c7af435";
+  };
+  description = "The Collaborative API Design Tool for designing and managing OpenAPI specs.";
+  homepage = https://insomnia.rest;
+  appcast = "https://api.insomnia.rest/changelog.json?app=com.insomnia.designer";
+};
+
 IntelliJIDEA = self.installApplication rec {
   name = "IntelliJIDEA";
   appname = "IntelliJ IDEA";
