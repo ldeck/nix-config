@@ -49,12 +49,12 @@ Docker = self.installApplication rec {
 
 Firefox = self.installApplication rec {
   name = "Firefox";
-  version = "77.0.1";
+  version = "78.0.2";
   sourceRoot = "Firefox.app";
   src = super.fetchurl {
     name = "Firefox-${version}.dmg";
     url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-US/Firefox+${version}.dmg";
-    sha256 = "1i9fy8mqz5p71w2ms7ym8q6xwbq162blqm6l5rl36iv44hwdj5l8";
+    sha256 = "1jl1l7wr0pw0z8rifjms6r22gdxyvdjivxwz8ndvknwsds4nn9ya";
   };
   postInstall = ''
     mkdir -p $out/bin
@@ -113,7 +113,6 @@ Insomnia = self.installApplication rec {
   version = "2020.3.3";
   sourceRoot = "Insomnia.app";
   src = super.fetchurl {
-    name = "insomnia-${version}.dmg";
     url = "https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.dmg";
     sha256 = "c22949f717ffaf8bdef10d0a833b1a9fe0eb2bebe317913db2e1ce7572fd5a44";
   };
