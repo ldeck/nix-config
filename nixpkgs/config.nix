@@ -108,6 +108,7 @@
         # devtools
         geckodriver
         nodePackages.prettier
+        python38Packages.yamllint
 
         # general
         aspell
