@@ -122,7 +122,6 @@
         go
         git
         hello
-        jetbrains.idea-ultimate.2019.3
         jq
         jump
         kotlin
