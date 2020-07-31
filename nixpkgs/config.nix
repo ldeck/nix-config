@@ -181,7 +181,8 @@
 
       modRoot = "./src";
       goDeps = ./overlays/pkgs/kryptco/kr/deps.nix;
-      modSha256 = "1q6vhdwz26qkpzmsnk6d9j6hjgliwkgma50mq7w2rl6rkwashvay";
+      modSha256 = "1q6vhdwz26qkpzmsnk6d9j6hjgliwkgma50mq7w2rl6rkwashvay"; #deprecated
+      vendorSha256 = "1q6vhdwz26qkpzmsnk6d9j6hjgliwkgma50mq7w2rl6rkwashvay";
 
       meta = with lib; {
         description = "A dev tool for SSH auth + Git commit/tag signing using a key stored in Krypton.";
