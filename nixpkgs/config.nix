@@ -116,7 +116,7 @@
         coreutils
         direnv
         emacs
-        emscripten
+        #emscripten
         ffmpeg
         gdb
         go
