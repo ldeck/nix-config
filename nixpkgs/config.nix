@@ -18,6 +18,30 @@
       }
     '';
 
+    future-git = pkgs.writeShellScriptBin "future-git" ''
+      function help {
+        echo "Usage: $0 <hours> [<git args>]"
+        exit 1
+      }
+
+      if [ $# -eq 0 ]; then
+        help
+      fi
+
+      items=( "$@" )
+      (for e in "''${items[@]}"; do [[ "$e" =~ ^(--)?help$ ]] && exit 0; done; exit 1) && help
+
+      HOURS=4
+      re='^[0-9]+$'
+      if [[ $1 =~ $re ]]; then
+        HOURS=$1
+        shift
+      fi
+
+      DATE="$(date -d +''${HOURS}hours)"
+      GIT_AUTHOR_DATE="''${DATE}" GIT_COMMITTER_DATE="''${DATE}" git "$@"
+    '';
+
     idownload = pkgs.writeShellScriptBin "idownload" ''
       if [ "$#" -ne 1 ] || ! [ -e $1 ]; then
           echo "Usage: idownload <file|dir>";
@@ -80,6 +104,7 @@
       '')
 
         # custom
+        future-git
         idownload
         java_home
         jqo
