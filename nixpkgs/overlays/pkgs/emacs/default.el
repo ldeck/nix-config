@@ -8,6 +8,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode t)
 (add-hook 'before-save-hook 'whitespace-cleanup)
+(setq visible-bell nil
+      ring-bell-function 'ldeck-flash-mode-line)
+
 
 ;; functions
 (defun with-ldeck-magit-mode-customisations ()
@@ -24,6 +27,15 @@
   (magit-define-popup-action 'magit-rebase-popup
 			     ?t "Reshelve since" 'magit-reshelve-since)
   )
+
+(defun ldeck-flash-mode-line ()
+  "Ignore audible bell and flash the mode line instead."
+  (let ((orig-fg (face-foreground 'mode-line)))
+	  (set-face-foreground 'mode-line "#F2804F")
+	  (run-with-idle-timer 0.1 nil
+			       (lambda (fg) (set-face-foreground 'mode-line fg))
+			       orig-fg)))
+
 
 ;; initialize package
 (require 'package)
