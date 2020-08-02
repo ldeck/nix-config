@@ -1,9 +1,29 @@
+;;; default --- ldeck emacs config
+;;; Commentary:
+;; config managed by use-package
+;;; Code:
 ;; general options
 (tool-bar-mode -1)
 (server-start)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode t)
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; functions
+(defun with-ldeck-magit-mode-customisations ()
+  "Add custom magit popup and transient switch."
+  (interactive)
+  (magit-define-popup-action 'magit-commit-popup
+			     ?n "Reshelve commit" 'magit-commit-reshelve)
+  (magit-define-popup-switch 'magit-push-popup
+			     ?S "Skip gitlab pipeline creation" "--push-option=ci.skip")
+  (magit-define-popup-option 'magit-push-popup
+			     ?O "Set extra push option #1" "--push-option=")
+  (magit-define-popup-option 'magit-push-popup
+			     ?P "Set extra push option #2" "--push-option=")
+  (magit-define-popup-action 'magit-rebase-popup
+			     ?t "Reshelve since" 'magit-reshelve-since)
+  )
 
 ;; initialize package
 (require 'package)
@@ -112,8 +132,8 @@
   :if (executable-find "git")
   :bind (("C-x g" . magit-status)
 	 ("C-x G" . magit-dispatch-popup))
-  :init
-  (setq magit-completing-read-function 'ivy-completing-read))
+  :init (setq magit-completing-read-function 'ivy-completing-read)
+  :hook (magit-mode . with-ldeck-magit-mode-customisations))
 
 (use-package markdown-mode
   :mode ("\\.markdown\\'" "\\.md\\'"))
