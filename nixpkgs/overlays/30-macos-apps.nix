@@ -93,6 +93,19 @@ GIMP = self.installApplication rec {
   appcast = "https://download.gimp.org/pub/gimp/v#{majorMinorVersion}/osx/";
 };
 
+Gitter = self.installApplication rec {
+  name = "Gitter";
+  version = "1.177";
+  sourceRoot = "Gitter.app";
+  src = super.fetchurl {
+    url = "https://update.gitter.im/osx/Gitter-${version}.dmg";
+    sha256 = "0ca1c0d52c342548afbea8d3501282a4ccf494058aa2e23af27e09198a7a30a4";
+  };
+  description = "Gitter is a chat and networking platform that helps to manage, grow and connect communities through messaging, content and discovery.";
+  homepage = "https://gitter.im";
+  appcast = "https://update.gitter.im/osx/appcast.xml";
+};
+
 GoogleChrome = self.installApplication rec {
   name = "GoogleChrome";
   appname = "Google Chrome";
