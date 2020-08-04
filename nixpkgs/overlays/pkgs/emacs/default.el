@@ -47,11 +47,16 @@
 (use-package undo-tree
   :config (global-undo-tree-mode))
 
+(use-package browse-at-remote
+  :ensure t
+  :commands browse-at-remote
+  :bind ("C-c g r" . browse-at-remote))
+
 (use-package company
+  :defer 1
   :bind ("<C-tab>" . company-complete)
   :diminish company-mode
   :commands (company-mode global-company-mode)
-  :defer 1
   :init (setq company-dabbrev-downcase nil)
   :config (global-company-mode))
 
@@ -59,7 +64,7 @@
   :commands (counsel-descbinds)
   :bind (([remap execute-extended-command] . counsel-M-x)
 	 ("C-x C-f" . counsel-find-file)
-	 ("C-c g" . counsel-git)
+	 ("C-c g f" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
 	 ("C-c k" . counsel-ag)
 	 ("C-x l" . counsel-locate)
@@ -91,6 +96,16 @@
   :config (global-flycheck-mode))
 
 (use-package format-all)
+
+(use-package git-messenger
+  :ensure t
+  :commands git-messenger:popup-message
+  :bind (("C-c g m" . git-messenger:popup-message))
+  :config
+  (setq git-messenger:show-detail t))
+
+(use-package git-timemachine
+  :ensure t)
 
 (use-package helm
   :defer 2

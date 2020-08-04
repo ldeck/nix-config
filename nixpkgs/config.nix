@@ -257,6 +257,7 @@
       # MELPA stable packages
       (with epkgs.melpaStablePackages; [
         ag
+        browse-at-remote
         company
         company-terraform
         counsel
@@ -264,6 +265,8 @@
         expand-region
         flycheck
         format-all
+        git-messenger
+        git-timemachine
         helm
         helm-ag
         helm-descbinds
