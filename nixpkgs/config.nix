@@ -135,6 +135,11 @@
         nodePackages.prettier
         python38Packages.yamllint
 
+
+        #scala
+        sbt
+        scala
+
         # general
         aspell
         bc
@@ -157,7 +162,6 @@
         nixops
         nox
         perl
-        scala
         silver-searcher
         taskwarrior
         yq
