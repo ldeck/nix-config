@@ -135,6 +135,7 @@
 
         # java
         jdk11
+        visualvm
 
         # js
         nodejs-10_x
