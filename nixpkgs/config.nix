@@ -130,6 +130,9 @@
         cloud-sql-proxy
         terraform
 
+        #go
+        vgo2nix
+
         # java
         jdk11
 
