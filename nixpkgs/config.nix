@@ -103,6 +103,10 @@
           cp ${myProfile} $out/etc/profile.d/my-profile.sh
       '')
 
+        #nix
+        nix-prefetch-github
+        nix-prefetch-scripts
+
         # custom
         future-git
         idownload
