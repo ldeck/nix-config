@@ -162,6 +162,20 @@ IntelliJIDEA = self.installApplication rec {
   appcast = https://www.jetbrains.com/idea/download/other.html;
 };
 
+MAT = self.installApplication rec {
+  name = "MAT";
+  majorMinorVersion = "1.10.0";
+  version = "${majorMinorVersion}.20200225";
+  sourceRoot = "mat.app";
+  src = super.fetchurl {
+    url = "https://www.eclipse.org/downloads/download.php?r=1&file=/mat/${majorMinorVersion}/rcp/MemoryAnalyzer-${version}-macosx.cocoa.x86_64.zip";
+    sha256 = "dc711052e9ede8b6e9af0443035cee590bb5d2609705440f32d0ef0d6f66cbf3";
+  };
+  description = "The Eclipse Memory Analyzer is a fast and feature-rich Java heap analyzer that helps you find memory leaks and reduce memory consumption.";
+  homepage = "https://www.eclipse.org/mat/";
+  appcast = "https://www.eclipse.org/mat/downloads.php";
+};
+
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
   version = "6.12.2";
