@@ -142,6 +142,9 @@
         nodePackages.prettier
         python38Packages.yamllint
 
+        #net
+        #nss-cacert
+        openconnect
 
         #scala
         sbt
