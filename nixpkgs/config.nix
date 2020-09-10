@@ -118,6 +118,7 @@
         bash-boilerplate
 
         # cloud
+        ansible
         cloudfoundry-cli
         google-cloud-sdk
         cloud-sql-proxy
