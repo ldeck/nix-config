@@ -155,6 +155,7 @@
         scala
 
         # general
+        asciinema
         aspell
         bc
         coreutils
