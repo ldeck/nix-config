@@ -192,7 +192,7 @@
     # oauth derivations
     # =======================
 
-    kryptco.kr = buildGoModule rec {
+    kryptco.kr = stdenv.mkDerivation rec {
       name = "kr-${version}";
       version = "2.4.15";
 
@@ -203,10 +203,17 @@
         sha256 = "13ch85f1y4j2n4dbc6alsxbxfd6xnidwi2clibssk5srkz3mx794";
       };
 
-      modRoot = "./src";
-      goDeps = ./overlays/pkgs/kryptco/kr/deps.nix;
-      modSha256 = "1q6vhdwz26qkpzmsnk6d9j6hjgliwkgma50mq7w2rl6rkwashvay"; #deprecated
-      vendorSha256 = "1q6vhdwz26qkpzmsnk6d9j6hjgliwkgma50mq7w2rl6rkwashvay";
+      buildInputs = with pkgs; [ go ];
+
+      makeFlags = [
+        "PREFIX=$(out)"
+        "GOPATH=$(out)/share/go"
+        "GOCACHE=$(TMPDIR)/go-cache"
+      ];
+
+      preInstall = ''
+        mkdir -p $out/share/go
+      '';
 
       meta = with lib; {
         description = "A dev tool for SSH auth + Git commit/tag signing using a key stored in Krypton.";
