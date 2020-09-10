@@ -107,6 +107,7 @@
         nix-prefetch-github
         nix-prefetch-scripts
         undmg
+        styx
 
         # custom
         future-git
