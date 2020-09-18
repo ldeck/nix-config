@@ -24,12 +24,12 @@ installApplication =
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "2.2.0.5";
-  revision = "43884";
+  version = "2.3.0.5";
+  revision = "48029";
   sourceRoot = "Docker.app";
   src = super.fetchurl {
     url = "https://download.docker.com/mac/stable/${revision}/Docker.dmg";
-    sha256 = "14dgvicl56lzr0p0g1ha7zkqv7wk3kxl90a6zk2cswyxn93br04s";
+    sha256 = "03ynkknn3v8s9nfhif39ivs1gdzpb29l9qj8n2znsc8zanc8sn2g";
     # https://github.com/Homebrew/homebrew-cask/blob/master/Casks/docker.rb
   };
   description = ''
@@ -41,8 +41,10 @@ Docker = self.installApplication rec {
 
   postInstall = ''
     mkdir -p $out/bin
-    ln -fs "$out/Applications/${name}.app/Contents/Resources/bin/docker" $out/bin/docker
-    ln -fs "$out/Applications/${name}.app/Contents/Resources/bin/docker-compose/docker-compose" $out/bin/docker-compose
+    BINDIR="$out/Applications/${name}.app/Contents/Resources/bin"
+    for f in `ls $BINDIR | grep docker`; do
+      ln -fs "$BINDIR/$f" $out/bin/$f
+    done
     #todo: add etc/docker[-compose].[bash|zsh]-completion
   '';
   };
