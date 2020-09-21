@@ -273,6 +273,10 @@
       ]) ++
 
       (with epkgs.melpaPackages; [
+        editorconfig
+        editorconfig-custom-majormode
+        editorconfig-domain-specific
+        editorconfig-generate
         dired-subtree
         helm-flyspell
         dtrt-indent
