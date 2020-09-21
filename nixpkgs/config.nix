@@ -130,6 +130,9 @@
         cloud-sql-proxy
         terraform
 
+        # containers
+        kubectl
+
         #go
         vgo2nix
 
