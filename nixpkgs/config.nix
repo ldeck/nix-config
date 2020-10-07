@@ -316,6 +316,7 @@
         use-package
         which-key
         yaml-mode
+        zoom-window
       ]));
   };
 }
