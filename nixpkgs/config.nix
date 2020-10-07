@@ -146,6 +146,7 @@
 
         # devtools
         geckodriver
+        nodePackages.node2nix
         nodePackages.prettier
         python38Packages.yamllint
 
