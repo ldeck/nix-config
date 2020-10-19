@@ -215,6 +215,13 @@
 				  :test-suffix ".test")
   )
 
+(use-package plantuml-mode
+  :mode "\\.puml\\'"
+  :config
+  (setq plantuml-executable-path (locate-file "plantuml" exec-path))
+  (setq plantuml-default-exec-mode 'executable)
+  )
+
 (use-package dtrt-indent
   :ensure t
   :config

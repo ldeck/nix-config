@@ -148,6 +148,7 @@
         geckodriver
         nodePackages.node2nix
         nodePackages.prettier
+        plantuml
         python38Packages.yamllint
 
         #net
@@ -281,9 +282,11 @@
         editorconfig-custom-majormode
         editorconfig-domain-specific
         editorconfig-generate
+        flycheck-plantuml
         dired-subtree
         helm-flyspell
         dtrt-indent
+        plantuml-mode
         terraform-doc
         undo-propose
       ]) ++
