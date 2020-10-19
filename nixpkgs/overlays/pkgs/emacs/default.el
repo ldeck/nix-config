@@ -14,6 +14,30 @@
 
 
 ;; functions
+(defun endless/visit-pull-request-url-github ()
+  "Visit the current branch's PR on Github."
+  (interactive)
+  (browse-url
+   (format "https://github.com/%s/pull/new/%s"
+	   (replace-regexp-in-string
+	    "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+	    (magit-get "remote"
+		       (magit-get-push-remote)
+		       "url"))
+	   (magit-get-current-branch))))
+
+(defun endless/visit-pull-request-url-gitlab ()
+  "Visit the current branch's PR on Gitlab."
+  (interactive)
+  (browse-url
+   (format "https://gitlab.com/%s/pull/new/%s"
+	   (replace-regexp-in-string
+	    "\\`.+gitlab\\.com:\\(.+\\)\\.git\\'" "\\1"
+	    (magit-get "remote"
+		       (magit-get-push-remote)
+		       "url"))
+	   (magit-get-current-branch))))
+
 (defun with-ldeck-magit-mode-customisations ()
   "Add custom magit popup and transient switch."
   (interactive)
@@ -27,6 +51,10 @@
 			     ?P "Set extra push option #2" "--push-option=")
   (magit-define-popup-action 'magit-rebase-popup
 			     ?t "Reshelve since" 'magit-reshelve-since)
+  (magit-define-popup-action 'magit-push-popup
+			     ?G "Create pull request (github.com)" 'endless/visit-pull-request-url-github)
+  (magit-define-popup-action 'magit-push-popup
+			     ?L "Create pull request (gitlab.com)" 'endless/visit-pull-request-url-gitlab)
   )
 
 (defun ldeck-flash-mode-line ()

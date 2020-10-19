@@ -5,3 +5,4 @@
 /yarn/global/
 /gtk-2.0/gtkfilechooser.ini
 /jgit/config
+/nixpkgs/overlays/pkgs/emacs/flycheck_default.elc
