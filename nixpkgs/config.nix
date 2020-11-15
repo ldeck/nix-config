@@ -183,7 +183,7 @@
         perl
         silver-searcher
         taskwarrior
-        yq
+        #yq
       ];
       pathsToLink = [ "/share/man" "/share/doc" "/bin" "/etc" "/Applications" ];
       extraOutputsToInstall = [ "man" "doc" ];
