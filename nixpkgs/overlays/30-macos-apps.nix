@@ -153,11 +153,11 @@ Insomnia = self.installApplication rec {
 InsomniaDesigner = self.installApplication rec {
   name = "InsomniaDesigner";
   appname = "Insomnia Designer";
-  version = "2020.3.3";
+  version = "2020.4.2";
   sourceRoot = "Insomnia Designer.app";
   src = super.fetchurl {
     url = "https://github.com/Kong/insomnia/releases/download/designer%40${version}/Insomnia.Designer-${version}.dmg";
-    sha256 = "2bc0b19dda57ac4299a14c0e8e887c573415a1fa590be6bea93da5ed3c7af435";
+    sha256 = "1s93swrl0b9fswrxb56fij3l7cm63541i8vfz8c7c2ra7plw1ici";
   };
   description = "The Collaborative API Design Tool for designing and managing OpenAPI specs.";
   homepage = https://insomnia.rest;
