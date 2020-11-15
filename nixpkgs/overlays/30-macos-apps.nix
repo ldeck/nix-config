@@ -38,12 +38,12 @@ Chromium = self.installApplication rec {
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "2.4.0.0";
-  revision = "48506";
-  sourceRoot = "Docker.app";
+  version = "2.5.0.0";
+  revision = "49427";
+  sourceRoot = "${name}.app";
   src = super.fetchurl {
-    url = "https://download.docker.com/mac/stable/${revision}/Docker.dmg";
-    sha256 = "0819p460jpymbfrb2c72zr61aiw191wivrq3ii3sfq3zck233d2d";
+    url = "https://desktop.docker.com/mac/stable/${revision}/${name}.dmg";
+    sha256 = "db78429815fd571bbed319ece03fbe227a3d497b7d1d37c87b0e5a3600b9a23b";
     # https://github.com/Homebrew/homebrew-cask/blob/master/Casks/docker.rb
   };
   description = ''
@@ -61,7 +61,7 @@ Docker = self.installApplication rec {
     done
     #todo: add etc/docker[-compose].[bash|zsh]-completion
   '';
-  };
+};
 
 Firefox = self.installApplication rec {
   name = "Firefox";
