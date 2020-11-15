@@ -11,6 +11,7 @@
 (setq visible-bell nil
       ring-bell-function 'ldeck-flash-mode-line)
 (add-to-list 'exec-path (expand-file-name "~/.nix-profile/bin"))
+(setq-default indent-tabs-mode nil)
 
 
 ;; functions
@@ -218,7 +219,7 @@
 
 (use-package plantuml-mode
   :mode "\\.puml\\'"
-  :config
+  :init
   (setq plantuml-executable-path (locate-file "plantuml" exec-path))
   (setq plantuml-default-exec-mode 'executable)
   )
