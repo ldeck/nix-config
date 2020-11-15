@@ -194,12 +194,12 @@ MAT = self.installApplication rec {
 
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
-  version = "6.12.2";
+  version = "6.15.0";
   appname = "Tibco Jaspersoft Studio";
   sourceRoot = "TIBCO Jaspersoft Studio ${version}.app";
   src = super.fetchurl {
     url = "https://downloads.sourceforge.net/jasperstudio/JaspersoftStudio-${version}/TIB_js-studiocomm_${version}_macosx_x86_64.dmg";
-    sha256 = "0agn36cm57n0nmm6zzqfjh9slxyiwg01la0fjggvijxhwipk7fpd";
+    sha256 = "0lmamk4w96vfcizg6qxbvdpgdzkhsnvjvh4ymsylfmzmxwggwgj2";
   };
   description = "The Eclipse-based report development tool for JasperReports and JasperReports Server";
   homepage = https://community.jaspersoft.com/project/jaspersoft-studio;
