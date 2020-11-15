@@ -140,7 +140,7 @@
         visualvm
 
         # js
-        nodejs-10_x
+        nodejs-14_x
         yarn
 
         # devtools
