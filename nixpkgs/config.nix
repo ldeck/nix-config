@@ -131,6 +131,7 @@
 
         # containers
         kubectl
+        fluxctl
 
         #go
         vgo2nix
