@@ -208,12 +208,12 @@ TibcoJaspersoftStudio = self.installApplication rec {
 
 Zotero = self.installApplication rec {
   name = "Zotero";
-  version = "5.0.84";
+  version = "5.0.93";
   sourceRoot = "Zotero.app";
   src = super.fetchurl {
     name = "zotero-${version}.dmg";
     url = "https://download.zotero.org/client/release/${version}/Zotero-${version}.dmg";
-    sha256 = "0nfgbbwls576hi0bvjb47b5sn65ygxj3vz102s1jsvmk4pkwvap8";
+    sha256 = "0hg0xs41wx4ncwbps22bgga0hlgdiaw0dmb11iljvyn0xp6cx63r";
   };
   description = ''
     Zotero is a free, easy-to-use tool to help you collect, organize, cite,
