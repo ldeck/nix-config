@@ -103,6 +103,7 @@
   :ensure t
   :bind
   ("C-S-k" . crux-smart-kill-line)
+  ("C-c d" . crux-duplicate-current-line-or-region)
   ("C-c n" . crux-cleanup-buffer-or-region)
   ("C-c f" . crux-recentf-find-file)
   ("C-a" . crux-move-beginning-of-line))
