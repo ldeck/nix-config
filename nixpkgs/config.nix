@@ -178,7 +178,7 @@
         markdown
         maven
         nginx
-        nixops
+        #nixops
         nox
         perl
         silver-searcher
