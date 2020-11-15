@@ -22,6 +22,20 @@ installApplication =
     };
   };
 
+Chromium = self.installApplication rec {
+  name = "Chromium";
+  version = "822990";
+  sourceRoot = "chrome-mac/${name}.app";
+  src = super.fetchurl {
+    url = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/${version}/chrome-mac.zip";
+    sha256 = "1kra90qy7jqir8sq2cqrf5gvz5ryb5my4xhqr5635blcmsqr3imx";
+  };
+  description = "Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.";
+  homepage = "https://chromium.org/Home";
+  appcast = "https://chromiumdash.appspot.com/releases?platform=Mac";
+  #appcast = "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2FLAST_CHANGE?alt=media";
+};
+
 Docker = self.installApplication rec {
   name = "Docker";
   version = "2.4.0.0";
