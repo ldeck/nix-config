@@ -38,12 +38,12 @@ Chromium = self.installApplication rec {
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "2.5.0.0";
-  revision = "49427";
+  version = "2.5.0.1";
+  revision = "49550";
   sourceRoot = "${name}.app";
   src = super.fetchurl {
     url = "https://desktop.docker.com/mac/stable/${revision}/${name}.dmg";
-    sha256 = "db78429815fd571bbed319ece03fbe227a3d497b7d1d37c87b0e5a3600b9a23b";
+    sha256 = "0rp2caxkr47hwpp4s0xwil09c463va5pfzwq74mal5b8zfnfnkhl";
     # https://github.com/Homebrew/homebrew-cask/blob/master/Casks/docker.rb
   };
   description = ''
