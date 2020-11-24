@@ -278,6 +278,9 @@
       ]) ++
 
       (with epkgs.melpaPackages; [
+        docker
+        dockerfile-mode
+        docker-compose-mode
         editorconfig
         editorconfig-custom-majormode
         editorconfig-domain-specific
