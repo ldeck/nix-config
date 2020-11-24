@@ -20,51 +20,51 @@
   (interactive)
   (browse-url
    (format "https://github.com/%s/pull/new/%s"
-	   (replace-regexp-in-string
-	    "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-	    (magit-get "remote"
-		       (magit-get-push-remote)
-		       "url"))
-	   (magit-get-current-branch))))
+           (replace-regexp-in-string
+            "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+            (magit-get "remote"
+                       (magit-get-push-remote)
+                       "url"))
+           (magit-get-current-branch))))
 
 (defun endless/visit-pull-request-url-gitlab ()
   "Visit the current branch's PR on Gitlab."
   (interactive)
   (browse-url
    (format "https://gitlab.com/%s/pull/new/%s"
-	   (replace-regexp-in-string
-	    "\\`.+gitlab\\.com:\\(.+\\)\\.git\\'" "\\1"
-	    (magit-get "remote"
-		       (magit-get-push-remote)
-		       "url"))
-	   (magit-get-current-branch))))
+           (replace-regexp-in-string
+            "\\`.+gitlab\\.com:\\(.+\\)\\.git\\'" "\\1"
+            (magit-get "remote"
+                       (magit-get-push-remote)
+                       "url"))
+           (magit-get-current-branch))))
 
 (defun with-ldeck-magit-mode-customisations ()
   "Add custom magit popup and transient switch."
   (interactive)
   (magit-define-popup-action 'magit-commit-popup
-			     ?n "Reshelve commit" 'magit-commit-reshelve)
+                             ?n "Reshelve commit" 'magit-commit-reshelve)
   (magit-define-popup-switch 'magit-push-popup
-			     ?S "Skip gitlab pipeline creation" "--push-option=ci.skip")
+                             ?S "Skip gitlab pipeline creation" "--push-option=ci.skip")
   (magit-define-popup-option 'magit-push-popup
-			     ?O "Set extra push option #1" "--push-option=")
+                             ?O "Set extra push option #1" "--push-option=")
   (magit-define-popup-option 'magit-push-popup
-			     ?P "Set extra push option #2" "--push-option=")
+                             ?P "Set extra push option #2" "--push-option=")
   (magit-define-popup-action 'magit-rebase-popup
-			     ?t "Reshelve since" 'magit-reshelve-since)
+                             ?t "Reshelve since" 'magit-reshelve-since)
   (magit-define-popup-action 'magit-push-popup
-			     ?G "Create pull request (github.com)" 'endless/visit-pull-request-url-github)
+                             ?G "Create pull request (github.com)" 'endless/visit-pull-request-url-github)
   (magit-define-popup-action 'magit-push-popup
-			     ?L "Create pull request (gitlab.com)" 'endless/visit-pull-request-url-gitlab)
+                             ?L "Create pull request (gitlab.com)" 'endless/visit-pull-request-url-gitlab)
   )
 
 (defun ldeck-flash-mode-line ()
   "Ignore audible bell and flash the mode line instead."
   (let ((orig-fg (face-foreground 'mode-line)))
-	  (set-face-foreground 'mode-line "#F2804F")
-	  (run-with-idle-timer 0.1 nil
-			       (lambda (fg) (set-face-foreground 'mode-line fg))
-			       orig-fg)))
+          (set-face-foreground 'mode-line "#F2804F")
+          (run-with-idle-timer 0.1 nil
+                               (lambda (fg) (set-face-foreground 'mode-line fg))
+                               orig-fg)))
 
 
 ;; initialize package
@@ -103,12 +103,12 @@
 (use-package counsel
   :commands (counsel-descbinds)
   :bind (([remap execute-extended-command] . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file)
-	 ("C-c g f" . counsel-git)
-	 ("C-c j" . counsel-git-grep)
-	 ("C-c k" . counsel-ag)
-	 ("C-x l" . counsel-locate)
-	 ("M-y" . counsel-yank-pop)))
+         ("C-x C-f" . counsel-find-file)
+         ("C-c g f" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate)
+         ("M-y" . counsel-yank-pop)))
 
 (use-package crux
   :ensure t
@@ -123,10 +123,10 @@
   :ensure t
   :after dired
   :bind (:map dired-mode-map
-	      ("i" . dired-subtree-insert)
-	      (";" . dired-subtree-remove)
-	      ("<tab>" . dired-subtree-toggle)
-	      ("<backtab>" . dired-subtree-cycle)))
+              ("i" . dired-subtree-insert)
+              (";" . dired-subtree-remove)
+              ("<tab>" . dired-subtree-toggle)
+              ("<backtab>" . dired-subtree-cycle)))
 
 (use-package expand-region
   :ensure t
@@ -188,9 +188,9 @@
 (use-package ivy
   :defer 1
   :bind (("C-c C-r" . ivy-resume)
-	 ("C-x C-b" . ivy-switch-buffer)
-	 :map ivy-minibuffer-map
-	 ("C-j" . ivy-call))
+         ("C-x C-b" . ivy-switch-buffer)
+         :map ivy-minibuffer-map
+         ("C-j" . ivy-call))
   :diminish ivy-mode
   :commands ivy-mode
   :config (ivy-mode 1))
@@ -199,7 +199,7 @@
   :defer
   :if (executable-find "git")
   :bind (("C-x g" . magit-status)
-	 ("C-x G" . magit-dispatch-popup))
+         ("C-x G" . magit-dispatch-popup))
   :init (setq magit-completing-read-function 'ivy-completing-read)
   :hook (magit-mode . with-ldeck-magit-mode-customisations))
 
@@ -221,10 +221,10 @@
   (projectile-global-mode)
   (setq projectile-switch-project-action 'projectile-find-file)
   (projectile-register-project-type 'yarn '("package.json" "yarn.lock")
-				  :compile "yarn install"
-				  :test "yarn test"
-				  :run "yarn start"
-				  :test-suffix ".test")
+                                  :compile "yarn install"
+                                  :test "yarn test"
+                                  :run "yarn start"
+                                  :test-suffix ".test")
   )
 
 (use-package plantuml-mode
