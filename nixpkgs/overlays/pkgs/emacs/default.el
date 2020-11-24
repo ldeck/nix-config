@@ -77,6 +77,16 @@
 (use-package undo-tree
   :config (global-undo-tree-mode))
 
+(use-package docker
+  :ensure t
+  :bind ("C-c D" . docker))
+
+(use-package dockerfile-mode
+  :ensure t
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+
+(use-package docker-compose-mode)
+
 (use-package browse-at-remote
   :ensure t
   :commands browse-at-remote
