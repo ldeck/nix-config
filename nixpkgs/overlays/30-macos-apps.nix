@@ -192,6 +192,20 @@ MAT = self.installApplication rec {
   appcast = "https://www.eclipse.org/mat/downloads.php";
 };
 
+Postman = self.installApplication rec {
+  name = "Postman";
+  version = "7.36.0";
+  sourceRoot = "${name}.app";
+  src = super.fetchurl {
+    url = "https://dl.pstmn.io/download/version/${version}/osx64";
+    sha256 = "027b7yjiqs3s3dwbg9fh8la9p9k32f6s1p6jh6x69ypkgdrjwaxj";
+    name = "${name}-osx-${version}.zip";
+  };
+  description = "Collaboration platform for API development";
+  homepage = "https://www.postman.com/";
+  appcast = "https://macupdater.net/cgi-bin/check_urls/check_url_filename.cgi?url=https://dl.pstmn.io/download/latest/osx";
+};
+
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
   version = "6.15.0";
