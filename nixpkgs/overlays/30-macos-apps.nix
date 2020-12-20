@@ -194,11 +194,11 @@ MAT = self.installApplication rec {
 
 Postman = self.installApplication rec {
   name = "Postman";
-  version = "7.36.0";
+  version = "7.36.1";
   sourceRoot = "${name}.app";
   src = super.fetchurl {
     url = "https://dl.pstmn.io/download/version/${version}/osx64";
-    sha256 = "027b7yjiqs3s3dwbg9fh8la9p9k32f6s1p6jh6x69ypkgdrjwaxj";
+    sha256 = "1jcjs8xhv7ybh5ksf77h5x86f5blv8cypaba3k3xycxhy02ylwzk";
     name = "${name}-osx-${version}.zip";
   };
   description = "Collaboration platform for API development";
