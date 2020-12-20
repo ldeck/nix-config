@@ -98,11 +98,11 @@ FreeRuler = self.installApplication rec {
 GIMP = self.installApplication rec {
   name = "GIMP";
   majorMinorVersion = "2.10";
-  version = "${majorMinorVersion}.14";
+  version = "${majorMinorVersion}.22";
   sourceRoot = "GIMP-${majorMinorVersion}.app";
   src = super.fetchurl {
     url = "https://download.gimp.org/pub/gimp/v${majorMinorVersion}/osx/gimp-${version}-x86_64.dmg";
-    sha256 = "0cm63vrmrksm7jq1yrxr16wry45yfqx23hqv5363hb04l4wiwqv0";
+    sha256 = "102jm60bgnymm9xsdggg6bsfvqd3m81jxpy7q4j562cwmpw2nfwf";
   };
   description = "The Free & Open Source Image Editor";
   homepage = "https://www.gimp.org";
