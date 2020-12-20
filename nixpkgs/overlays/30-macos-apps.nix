@@ -208,12 +208,12 @@ Postman = self.installApplication rec {
 
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
-  version = "6.15.0";
+  version = "6.16.0";
   appname = "Tibco Jaspersoft Studio";
   sourceRoot = "TIBCO Jaspersoft Studio ${version}.app";
   src = super.fetchurl {
     url = "https://downloads.sourceforge.net/jasperstudio/JaspersoftStudio-${version}/TIB_js-studiocomm_${version}_macosx_x86_64.dmg";
-    sha256 = "0lmamk4w96vfcizg6qxbvdpgdzkhsnvjvh4ymsylfmzmxwggwgj2";
+    sha256 = "0ph9680c404yicdly38vadri651wf3h0c882bg6j9i2aikw97x2w";
   };
   description = "The Eclipse-based report development tool for JasperReports and JasperReports Server";
   homepage = https://community.jaspersoft.com/project/jaspersoft-studio;
