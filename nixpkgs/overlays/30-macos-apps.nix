@@ -139,11 +139,11 @@ GoogleChrome = self.installApplication rec {
 
 Insomnia = self.installApplication rec {
   name = "Insomnia";
-  version = "2020.4.2";
+  version = "2020.5.2";
   sourceRoot = "Insomnia.app";
   src = super.fetchurl {
     url = "https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.dmg";
-    sha256 = "0wpx092ikvk35id3dqq6wc52qzrbpwnzy08wgzpavh1vhxzhw5bm";
+    sha256 = "1ll88ngfiavacx0pq96lpmshp99k1x5ypk00xnww53y81gila21h";
   };
   description = "Cross-platform HTTP and GraphQL Client";
   homepage = https://insomnia.rest;
@@ -153,11 +153,11 @@ Insomnia = self.installApplication rec {
 InsomniaDesigner = self.installApplication rec {
   name = "InsomniaDesigner";
   appname = "Insomnia Designer";
-  version = "2020.4.2";
+  version = "2020.5.2";
   sourceRoot = "Insomnia Designer.app";
   src = super.fetchurl {
     url = "https://github.com/Kong/insomnia/releases/download/designer%40${version}/Insomnia.Designer-${version}.dmg";
-    sha256 = "1s93swrl0b9fswrxb56fij3l7cm63541i8vfz8c7c2ra7plw1ici";
+    sha256 = "0w9kdn316rxkm02nqxw4xrhja5xgp3l0hmg2mmb3d4782l7h5kx9";
   };
   description = "The Collaborative API Design Tool for designing and managing OpenAPI specs.";
   homepage = https://insomnia.rest;
