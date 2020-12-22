@@ -120,7 +120,6 @@
         # bash scripts
         argbash
         bash
-        bash-boilerplate
 
         # cloud
         ansible
@@ -194,21 +193,19 @@
     # bash script derivations
     # =======================
 
-    bash-boilerplate = stdenv.mkDerivation rec {
-      name = "bash-boilerplate-${version}";
-      version = "1.41";
-
+    bashew = stdenv.mkDerivation rec {
+      name = "bashew-${version}";
+      version = "v1.8.2";
       src = fetchFromGitHub {
         owner = "pforret";
-        repo = "bash-boilerplate";
-        rev = "7281a3705c82a92f1cddf4451d3d19a4a5bc2057";
-        sha256 = "1s8ilp0ki6fnri24i7814yv3y7gh1z0am37g1k7ilnikhgq5vbrw";
+        repo = "bashew";
+        rev = "0c8d99b10f11fe7fb125b9885ae0036f5d8e7ca0";
+        sha256 = "0jqgrpbjxx79qydfb472xnizbmg7r379imp5ppmdlfdsqdf83m0g";
       };
-
       installPhase = ''
         mkdir -p $out/bin;
-        cp script.sh $out/bin/bash-boilerplate;
-        chmod +x $out/bin/bash-boilerplate;
+        cp bashew.sh $out/bin/bashew;
+        chmod +x $out/bin/bashew;
       '';
     };
 
