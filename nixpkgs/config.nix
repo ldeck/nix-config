@@ -85,6 +85,20 @@
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
+    nix-link-macapps = pkgs.writeShellScriptBin "nix-link-macapps" ''
+      #see https://raw.githubusercontent.com/matthewbauer/macNixOS/master/link-apps.sh
+      NIX_APPS="$HOME"/.nix-profile/Applications
+      APP_DIR="$HOME"/Applications
+
+      # create links
+      pushd "$APP_DIR" > /dev/null
+      find "$NIX_APPS" -type l -exec ln -fs {} . ';'
+      popd > /dev/null
+
+      # remove broken links
+      find -L "$APP_DIR" -type l -exec rm -- {} +
+    '';
+
     sudo-with-touch = pkgs.writeShellScriptBin "sudo-with-touch" ''
       primary=$(cat /etc/pam.d/sudo | head -2 | tail -1 | awk '{$1=$1}1' OFS=",")
       if [ "auth,sufficient,pam_tid.so" != "$primary" ]; then
@@ -115,6 +129,7 @@
         jqo
         jqj
         jqr
+        nix-link-macapps
         sudo-with-touch
 
         # bash scripts
