@@ -56,7 +56,7 @@
         echo "Usage: $0 -v <version>";
         exit 1;
       fi
-      JDK08_HOME="${pkgs.jdk}"
+      JDK08_HOME="${pkgs.jdk8}"
       JDK11_HOME="${pkgs.jdk11}"
       JDK14_HOME="${pkgs.jdk14}"
       case "$2" in
