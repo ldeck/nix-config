@@ -24,11 +24,11 @@ installApplication =
 
 Chromium = self.installApplication rec {
   name = "Chromium";
-  version = "822990";
+  version = "841414";
   sourceRoot = "chrome-mac/${name}.app";
   src = super.fetchurl {
     url = "https://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac/${version}/chrome-mac.zip";
-    sha256 = "1kra90qy7jqir8sq2cqrf5gvz5ryb5my4xhqr5635blcmsqr3imx";
+    sha256 = "11bn7finc76kamdrh61icvg35wfnpch3rpxpa0gigzwar3gfn7q2";
   };
   description = "Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all Internet users to experience the web.";
   homepage = "https://chromium.org/Home";
