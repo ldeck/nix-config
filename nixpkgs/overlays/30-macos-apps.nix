@@ -206,6 +206,19 @@ Postman = self.installApplication rec {
   appcast = "https://macupdater.net/cgi-bin/check_urls/check_url_filename.cgi?url=https://dl.pstmn.io/download/latest/osx";
 };
 
+Signal = self.installApplication rec {
+  name = "Signal";
+  version = "1.39.4";
+  sourceRoot = "${name}.app";
+  src = super.fetchurl {
+    url = "https://updates.signal.org/desktop/signal-desktop-mac-${version}.dmg";
+    sha256 = "0di73h6hf8py18l1xgzh35lq1hpvm17lnavb9pan9w5wp29x35w6";
+  };
+  description = "Cross-platform instant messaging application focusing on security";
+  homepage = "https://signal.org/";
+  appcast = "https://github.com/signalapp/Signal-Desktop/releases.atom";
+};
+
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
   version = "6.16.0";
