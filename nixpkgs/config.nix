@@ -151,6 +151,27 @@
       fi
     '';
 
+    nix-reopen = pkgs.writeShellScriptBin "nix-reopen" ''
+      function usage {
+        echo "Usage: nix-reopen application [args...]"
+        exit 1
+      }
+      [[ $# -lt 1 ]] && usage
+      LOCATIONS=( "~/.nix-profile/Applications" "~/Applications" "/Applications" )
+      NAME=$1
+      APP=$(${app-path}bin/app-path "$NAME")
+      if [ -z "$APP" ]; then
+        usage
+      else
+        PNAME=$(defaults read "$APP/Contents/Info" CFBundleExecutable)
+        PIDSCOUNT=$(pgrep -i "$PNAME" | wc -l)
+        if [[ $PIDSCOUNT -ne 0 ]]; then
+          pkill -QUIT -i "$PNAME"
+        fi
+        ${nix-open}/bin/nix-open "$@"
+      fi
+    '';
+
     sudo-with-touch = pkgs.writeShellScriptBin "sudo-with-touch" ''
       primary=$(cat /etc/pam.d/sudo | head -2 | tail -1 | awk '{$1=$1}1' OFS=",")
       if [ "auth,sufficient,pam_tid.so" != "$primary" ]; then
@@ -183,6 +204,7 @@
         jqj
         jqr
         nix-open
+        nix-reopen
         nix-link-macapps
         sudo-with-touch
 
