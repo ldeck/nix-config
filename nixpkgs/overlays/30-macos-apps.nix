@@ -38,13 +38,12 @@ Chromium = self.installApplication rec {
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "3.0.4";
-  revision = "51218";
+  version = "3.1.0";
+  revision = "51484";
   sourceRoot = "${name}.app";
   src = super.fetchurl {
     url = "https://desktop.docker.com/mac/stable/${revision}/${name}.dmg";
-    sha256 = "14vzbrkjj50x2nc8xi1a5svh2g7ljl2fhwy0p0km0brfhkcrsf2w";
-    # https://github.com/Homebrew/homebrew-cask/blob/master/Casks/docker.rb
+    sha256 = "1f5nw9xni6aslyghams867f3i4flllkj3v1h8q1r1phrgm6nhs4y";
   };
   description = ''
     Docker CE for Mac is an easy-to-install desktop app for building,
