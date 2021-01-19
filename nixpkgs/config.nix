@@ -17,6 +17,43 @@
       }
     '';
 
+    app-path = pkgs.writeShellScriptBin "app-path" ''
+      color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+      echoerr() { echo "$@" 1>&2; }
+      function indented() {
+          (set -o pipefail; { "$@" 2>&3 | sed >&2 's/^/   | /'; } 3>&1 1>&2 | perl -pe 's/^(.*)$/\e[31m   | $1\e[0m/')
+      }
+      function join_by { local d=$1; shift; local f=$1; shift; printf %s "$f" "''${@/#/$d}"; }
+      function usage {
+        echo "Usage: app-path fuzzyname..."
+        exit 1
+      }
+      [[ $# -lt 1 ]] && usage
+
+      LOCATIONS=( "$HOME/.nix-profile/Applications" "$HOME/Applications" "/Applications" )
+      MATCHER=$(join_by '.*' "$@")
+
+      APP=""
+      for l in "''${LOCATIONS[@]}"; do
+        NAME=$(ls "$l" | grep -i "$MATCHER")
+        COUNT=$(echo "$NAME" | wc -l)
+        if [[  $COUNT -gt 1 ]]; then
+          color echoerr "Matches:"
+          indented echoerr "$NAME"
+          usage
+        fi
+        if [[ $COUNT -eq 1 ]]; then
+          APP="$l/$NAME"
+          break
+        fi
+      done
+      if [ -z "$APP" ]; then
+        usage
+      else
+        echo "$APP"
+      fi
+    '';
+
     future-git = pkgs.writeShellScriptBin "future-git" ''
       function help {
         echo "Usage: $0 <hours> [<git args>]"
@@ -123,6 +160,7 @@
         styx
 
         # custom
+        app-path
         future-git
         idownload
         java_home
