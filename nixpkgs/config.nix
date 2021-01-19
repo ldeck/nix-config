@@ -143,7 +143,7 @@
       }
       [[ $# -lt 1 ]] && usage
       NAME=$1; shift
-      APP=$(${app-path}bin/app-path "$NAME")
+      APP=$(${app-path}/bin/app-path "$NAME")
       if [ -z "$APP" ]; then
         usage
       else
@@ -159,7 +159,7 @@
       [[ $# -lt 1 ]] && usage
       LOCATIONS=( "~/.nix-profile/Applications" "~/Applications" "/Applications" )
       NAME=$1
-      APP=$(${app-path}bin/app-path "$NAME")
+      APP=$(${app-path}/bin/app-path "$NAME")
       if [ -z "$APP" ]; then
         usage
       else
