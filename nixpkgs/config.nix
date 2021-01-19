@@ -136,6 +136,21 @@
       find -L "$APP_DIR" -type l -exec rm -- {} +
     '';
 
+    nix-open = pkgs.writeShellScriptBin "nix-open" ''
+      function usage {
+        echo "Usage: nix-open application [args...]"
+        exit 1
+      }
+      [[ $# -lt 1 ]] && usage
+      NAME=$1; shift
+      APP=$(${app-path}bin/app-path "$NAME")
+      if [ -z "$APP" ]; then
+        usage
+      else
+        open -a $APP "$@"
+      fi
+    '';
+
     sudo-with-touch = pkgs.writeShellScriptBin "sudo-with-touch" ''
       primary=$(cat /etc/pam.d/sudo | head -2 | tail -1 | awk '{$1=$1}1' OFS=",")
       if [ "auth,sufficient,pam_tid.so" != "$primary" ]; then
@@ -167,6 +182,7 @@
         jqo
         jqj
         jqr
+        nix-open
         nix-link-macapps
         sudo-with-touch
 
