@@ -147,7 +147,7 @@
       if [ -z "$APP" ]; then
         usage
       else
-        open -a $APP "$@"
+        open -a "$APP" "$@"
       fi
     '';
 
