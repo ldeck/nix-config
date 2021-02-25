@@ -248,6 +248,7 @@
         #scala
         sbt
         scala
+        mill
 
         # general
         asciinema
