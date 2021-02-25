@@ -22,6 +22,35 @@ installApplication =
     };
   };
 
+installEclipseApplication =
+  { name,
+    appname ? name,
+    version,
+    src,
+    description,
+    homepage,
+    postInstall ? "",
+    sourceRoot ? ".",
+    plistArrayArgs ? ''
+      <string>-data</string>
+      <string>${builtins.getEnv "HOME"}/.nix-data/${name}</string>
+    '',
+    ...
+  }:
+  self.installApplication {
+    name = name;
+    appname = appname;
+    version = version;
+    src = src;
+    sourceRoot = sourceRoot;
+    description = description;
+    homepage = homepage;
+    postInstall = postInstall + ''
+      INFO=$out/Applications/${appname}.app/Contents/Info.plist
+      substituteInPlace $INFO --replace "</array>" "${plistArrayArgs}</array>"
+    '';
+  };
+
 Chromium = self.installApplication rec {
   name = "Chromium";
   version = "841414";
@@ -177,7 +206,21 @@ IntelliJIDEA = self.installApplication rec {
   appcast = https://www.jetbrains.com/idea/download/other.html;
 };
 
-MAT = self.installApplication rec {
+JProfiler = self.installApplication rec {
+  name = "JProfiler";
+  version = "12.0.1";
+  uversion = builtins.replaceStrings ["."] ["_"] "${version}";
+  sourceRoot = "${name}.app";
+  src = super.fetchurl rec {
+    url = "https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_macos_${uversion}.dmg";
+    sha256 = "0pvz6rx2z9agpglnkzlfkinhlr9p9pg44v9cbdvcybgvgl3dqp67";
+  };
+  description = "The award-winning all-in-one java profiler";
+  homepage = https://www.ej-technologies.com/products/jprofiler/overview.html;
+  appcase = https://www.ej-technologies.com/feeds/jprofiler/;
+};
+
+MAT = self.installEclipseApplication rec {
   name = "MAT";
   majorMinorVersion = "1.11.0";
   version = "${majorMinorVersion}.20201202";
