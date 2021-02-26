@@ -36,7 +36,7 @@
       APP=""
       for l in "''${LOCATIONS[@]}"; do
         NAME=$(ls "$l" | grep -i "$MATCHER")
-        COUNT=$(echo "$NAME" | wc -l)
+        COUNT=$(echo "$NAME" | grep -v -e '^$' | wc -l)
         if [[  $COUNT -gt 1 ]]; then
           color echoerr "Matches:"
           indented echoerr "$NAME"
