@@ -36,41 +36,48 @@ nix-env -i IntelliJIDEA
 
 ### app-path ###
 
-Usage: app-path fuzzyname...
+    Usage: app-path fuzzyname...
 
 ### future-git ###
 
-Usage: future-git <hours> [<git args>]
+    Usage: future-git <hours> [<git args>]
 
 ### idownload ###
 
-Description: downloads .*icloud files
-Usage: idownload <file|dir>
+Downloads unresolved .*icloud files or directories.
+
+    Usage: idownload <file|dir>
 
 ### java_home ###
 
-Usage: java_home -v <version>
+    Usage: java_home -v <version>
 
 ### jqo ###
 
-Description: pipe stdout to jqo to handle intermixed json and standard messages
+Pipe stdout to jqo to handle intermixed json and standard messages
+
+    Usage: ... | jqo
 
 ### nix-link-macapps ###
 
-Description: symlinks ~/.nix-profile/Applications/* to ~/Applications
-Usage: nix-link-macapps
+Symlinks `~/.nix-profile/Applications/*` to `~/Applications`.
+
+    Usage: nix-link-macapps
 
 ### nix-open ###
 
-Description: open nix or system-installed apps (found using app-path)
-Usage: nix-open application [args...]
+Open nix or system-installed apps (found using app-path).
+
+    Usage: nix-open application [args...]
 
 ### nix-reopen ###
 
-Description: re-open nix or system-installed apps (found using app-path)
-Usage: nix-reopen application [args...]
+Re-open nix or system-installed apps (found using app-path).
+
+    Usage: nix-reopen application [args...]
 
 ### sudo-with-touch ###
 
-Description: configures sudo to be used with Touch ID
-Usage: sudo-with-touch
+Configures sudo to be used with Touch ID.
+
+    Usage: sudo-with-touch
