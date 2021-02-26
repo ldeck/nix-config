@@ -26,7 +26,7 @@ NB: nothing will change if you've not changed any config and/or updated nix itse
 
 ## Install macOS derivations ##
 
-See list of macOS apps in overlay [30-apps.nix](nixpkgs/overlays/30-apps.nix)
+See list of macOS apps in overlay [30-macos-apps.nix](nixpkgs/overlays/30-macos-apps.nix)
 
 ``` shell
 nix-env -i IntelliJIDEA
