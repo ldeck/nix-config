@@ -30,11 +30,14 @@
       }
       [[ $# -lt 1 ]] && usage
 
-      LOCATIONS=( "$HOME/.nix-profile/Applications" "$HOME/Applications" "/Applications" )
+      LOCATIONS=( "$HOME/.nix-profile/Applications" "$HOME/.nix-profile/Applications/Utilities" "$HOME/Applications" "$HOME/Applications/Utilities" "/Applications" "/Applications/Utilities" "/System/Applications" "/System/Applications/Utilities" )
       MATCHER=$(join_by '.*' "$@")
 
       APP=""
       for l in "''${LOCATIONS[@]}"; do
+        if ! [ -d $l ]; then
+          continue;
+        fi
         NAME=$(ls "$l" | grep -i "$MATCHER")
         COUNT=$(echo "$NAME" | grep -v -e '^$' | wc -l)
         if [[  $COUNT -gt 1 ]]; then
