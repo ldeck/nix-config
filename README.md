@@ -42,14 +42,14 @@ If a single app can't be found, the matching applications are printed (if any), 
     Usage: app-path fuzzyname...
 
 Locations searched (in order):
-  * ~/.nix-profile/Applications
-  * ~/.nix-profile/Applications/Utilities
-  * ~/Applications
-  * ~/Applications/Utilities
-  * /Applications
-  * /Applications/Utilities
-  * /System/Applications
-  * /System/Applications/Utilities
+  * `~/.nix-profile/Applications`
+  * `~/.nix-profile/Applications/Utilities`
+  * `~/Applications`
+  * `~/Applications/Utilities`
+  * `/Applications`
+  * `/Applications/Utilities`
+  * `/System/Applications`
+  * `/System/Applications/Utilities`
 
 Examples:
 
