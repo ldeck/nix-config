@@ -153,12 +153,12 @@ Gitter = self.installApplication rec {
 GoogleChrome = self.installApplication rec {
   name = "GoogleChrome";
   appname = "Google Chrome";
-  version = "86.0.4240.183";
+  version = "88.0.4324.192";
   sourceRoot = "Google Chrome.app";
   src = super.fetchurl {
     url = "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg";
     # https://www.slimjet.com/chrome/google-chrome-old-version.php
-    sha256 = "0hma3zfrjhwzd37vrnr8r1w8gpf8ydk05vaapjriv0pk7d55c1am";
+    sha256 = "14ijmp2k35fpjv8xff954vqs692kzxfakbb78y1flslc41xvwgmp";
   };
   description = "The Google Chrome browser";
   homepage = "https://www.google.com/chrome/";
