@@ -195,11 +195,11 @@ InsomniaDesigner = self.installApplication rec {
 IntelliJIDEA = self.installApplication rec {
   name = "IntelliJIDEA";
   appname = "IntelliJ IDEA";
-  version = "2020.3.1";
+  version = "2020.3.2";
   sourceRoot = "IntelliJ IDEA.app";
   src = super.fetchurl {
     url = "https://download.jetbrains.com/idea/ideaIU-${version}.dmg";
-    sha256 = "0v8z9ai998jwi4afdkz2a6rk1j3jgzwcfymi36qrxdsnvqpky6gd";
+    sha256 = "17mahkig39jmkgcids7ghp537a308l8kfsf9b4slh4zgpfrnr4kg";
   };
   description = "The most intelligent JVM IDE";
   homepage = https://www.jetbrains.com/idea/;
