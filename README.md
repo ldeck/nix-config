@@ -36,7 +36,48 @@ nix-env -i IntelliJIDEA
 
 ### app-path ###
 
+Finds a single application via fuzzy matching if possible.
+If a single app can't be found, the matching applications are printed (if any), then app-path usage is printed.
+
     Usage: app-path fuzzyname...
+
+Locations searched (in order):
+  * ~/.nix-profile/Applications
+  * ~/.nix-profile/Applications/Utilities
+  * ~/Applications
+  * ~/Applications/Utilities
+  * /Applications
+  * /Applications/Utilities
+  * /System/Applications
+  * /System/Applications/Utilities
+
+Examples:
+
+    % app-path cont
+    Matches:
+    | Contacts.app
+    | Mission Control.app
+    Usage: app-path fuzzyname...
+
+    % app-path conta
+    /System/Applications/Contacts.app
+
+    % app-path idea
+    /Users/ldeck/.nix-profile/Applications/IntelliJ IDEA.app
+
+     % app-path ins
+    Matches:
+    | Insomnia Designer.app |
+    | Insomnia.app          |
+    Usage: app-path fuzzyname...
+
+    % app-path ins de
+    /Users/ldeck/.nix-profile/Applications/Insomnia Designer.app
+
+    # same as this regex
+    % app-path 'ins.*de'
+    /Users/ldeck/.nix-profile/Applications/Insomnia Designer.app
+
 
 ### future-git ###
 
