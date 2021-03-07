@@ -11,6 +11,7 @@
 (setq visible-bell nil
       ring-bell-function 'ldeck-flash-mode-line)
 (add-to-list 'exec-path (expand-file-name "~/.nix-profile/bin"))
+(setenv "PATH" (string-join exec-path ":"))
 (setq-default indent-tabs-mode nil)
 
 
