@@ -13,6 +13,7 @@
 (add-to-list 'exec-path (expand-file-name "~/.nix-profile/bin"))
 (setenv "PATH" (string-join exec-path ":"))
 (setq-default indent-tabs-mode nil)
+(delete-selection-mode 1)
 
 
 ;; functions
