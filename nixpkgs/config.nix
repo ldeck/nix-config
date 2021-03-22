@@ -265,6 +265,7 @@
         fd
         ffmpeg
         gdb
+        gnupg
         go
         git
         hello
