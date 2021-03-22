@@ -257,10 +257,12 @@
         asciinema
         aspell
         bc
+        clang
         coreutils
         direnv
         emacs
         #emscripten
+        fd
         ffmpeg
         gdb
         go
@@ -276,6 +278,7 @@
         #nixops
         nox
         perl
+        ripgrep
         silver-searcher
         taskwarrior
         #yq
