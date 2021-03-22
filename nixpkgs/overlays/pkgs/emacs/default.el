@@ -137,6 +137,16 @@
   :defer 2
   :config (global-flycheck-mode))
 
+(use-package forge
+  :ensure t
+  :after magit
+  :config
+  (setq forge-owned-accounts '())
+  (add-to-list 'forge-owned-accounts (if
+                                         (null (getenv "FORGE_OWNED_ACCOUNTS"))
+                                         (getenv "USER")
+                                       (getenv "FORGE_OWNED_ACCOUNTS"))))
+
 (use-package format-all)
 
 (use-package git-messenger

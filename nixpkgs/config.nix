@@ -387,6 +387,7 @@
         flycheck-plantuml
         dired-subtree
         dumb-jump
+        forge
         gitlab-ci-mode
         gitlab-ci-mode-flycheck
         helm-flyspell
