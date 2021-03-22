@@ -373,6 +373,9 @@
       ]) ++
 
       (with epkgs.melpaPackages; [
+        company
+        company-terraform
+        counsel
         docker
         dockerfile-mode
         docker-compose-mode
@@ -383,7 +386,9 @@
         flycheck-plantuml
         dired-subtree
         helm-flyspell
+        ivy
         dtrt-indent
+        magit
         plantuml-mode
         terraform-doc
         undo-propose
@@ -393,9 +398,6 @@
       (with epkgs.melpaStablePackages; [
         ag
         browse-at-remote
-        company
-        company-terraform
-        counsel
         crux
         expand-region
         flycheck
@@ -406,9 +408,7 @@
         helm-ag
         helm-descbinds
         helm-projectile
-        ivy
         mac-pseudo-daemon
-        magit
         markdown-mode
         move-text
         nix-mode
