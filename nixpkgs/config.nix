@@ -386,6 +386,9 @@
         editorconfig-generate
         flycheck-plantuml
         dired-subtree
+        dumb-jump
+        gitlab-ci-mode
+        gitlab-ci-mode-flycheck
         helm-flyspell
         ivy
         dtrt-indent
