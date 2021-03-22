@@ -15,7 +15,6 @@
 (setq-default indent-tabs-mode nil)
 (delete-selection-mode 1)
 
-
 ;; functions
 (defun endless/visit-pull-request-url-github ()
   "Visit the current branch's PR on Github."
@@ -201,7 +200,7 @@
   :defer
   :if (executable-find "git")
   :bind (("C-x g" . magit-status)
-         ("C-x G" . magit-dispatch-popup))
+         ("C-x G" . magit-dispatch))
   :init (setq magit-completing-read-function 'ivy-completing-read)
   :hook (magit-mode . with-ldeck-magit-mode-customisations))
 
@@ -220,7 +219,7 @@
   :bind-keymap ("C-c p" . projectile-command-map)
   :defer 5
   :config
-  (projectile-global-mode)
+  (projectile-mode)
   (setq projectile-switch-project-action 'projectile-find-file)
   (projectile-register-project-type 'yarn '("package.json" "yarn.lock")
                                   :compile "yarn install"
