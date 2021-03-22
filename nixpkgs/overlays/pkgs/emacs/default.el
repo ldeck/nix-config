@@ -268,4 +268,6 @@
   (which-key-mode +1))
 
 (use-package yaml-mode
-  :mode ("\\.yml$" "\\.yaml$"))
+  :mode ("\\.yml$" "\\.yaml$")
+  :init
+  (add-hook 'yaml-mode-hook (lambda () (electric-indent-local-mode -1))))
