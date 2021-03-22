@@ -271,3 +271,8 @@
   :mode ("\\.yml$" "\\.yaml$")
   :init
   (add-hook 'yaml-mode-hook (lambda () (electric-indent-local-mode -1))))
+
+
+(provide 'default)
+
+;;; default.el ends here
