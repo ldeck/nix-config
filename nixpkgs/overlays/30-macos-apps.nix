@@ -65,6 +65,19 @@ Chromium = self.installApplication rec {
   #appcast = "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2FLAST_CHANGE?alt=media";
 };
 
+Discord = self.installApplication rec {
+  name = "Discord";
+  version = "0.0.261";
+  sourceRoot = "${name}.app";
+  src = super.fetchurl {
+    url = "https://dl.discordapp.net/apps/osx/${version}/Discord.dmg";
+    sha256 = "f6bed5976d1ee223b42986b185626fbc758d5f918aff27d3d7b0c2212406cba9";
+  };
+  description = "Your place to talk. Whether you’re part of a school club, gaming group, worldwide art community, or just a handful of friends that want to spend time together, Discord makes it easy to talk every day and hang out more often.";
+  appcast = https://discord.com/api/stable/updates?platform=osx;
+  homepage = https://discord.com;
+};
+
 Docker = self.installApplication rec {
   name = "Docker";
   version = "3.2.2";
