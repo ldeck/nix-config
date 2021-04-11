@@ -402,6 +402,7 @@
         ivy
         dtrt-indent
         magit
+        symbol-overlay
         plantuml-mode
         terraform-doc
         undo-propose
