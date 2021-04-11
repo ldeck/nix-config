@@ -176,7 +176,7 @@
       # SHA256=$SHA256
 
       { pkgs ? import <nixpkgs> {},
-        name = "$PREFIX.$NAME";
+        name ? "$PREFIX.$NAME",
         hash ? "$HASH",
         sha256 ? "$SHA256",
         ...
