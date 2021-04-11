@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, bash, vagrant }:
+{ stdenv, lib, fetchFromGitHub, bash, vagrant }:
 
 stdenv.mkDerivation rec {
   name = "kapo=${version}";
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
     chmod +x $out/bin/kapo
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Vagrant helper";
     homepage = https://github.com/ebzzry/kapo;
     license = licenses.cc0;
