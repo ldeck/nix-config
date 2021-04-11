@@ -241,6 +241,7 @@
         geckodriver
         nodePackages.node2nix
         nodePackages.prettier
+        myEmacs
         plantuml
         python38Packages.yamllint
 
@@ -260,7 +261,6 @@
         clang
         coreutils
         direnv
-        emacs
         #emscripten
         fd
         ffmpeg
@@ -359,7 +359,7 @@
 
     myEmacsConfig = ./overlays/pkgs/emacs/default.el;
 
-    emacs = emacsWithPackages (epkgs:
+    myEmacs = emacsWithPackages (epkgs:
       # CONFIG setup
       [
         (runCommand "default.el" {} ''
