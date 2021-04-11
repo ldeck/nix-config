@@ -131,11 +131,42 @@
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
+    nix-cache-versions = pkgs.writeShellScriptBin "nix-cache-versions" ''
+      function usage {
+        echo "Usage: nix-cache-versions <version> [<sha256>]"
+        exit 1
+      }
+      if [[ $# -lt 1 ]] || [[ $# -gt 2 ]]; then
+        usage
+      fi
+
+      PINNED_VERSIONS=~/.cache/pinned-versions.tsv
+
+      if [[ $# -eq 1 ]]; then
+        if ! [ -f $PINNED_VERSIONS ]; then
+          echo ""
+        else
+          cat $PINNED_VERSIONS | grep $1 | cut -f 2
+        fi
+      else
+        if ! [ -f $PINNED_VERSIONS ]; then
+          touch $PINNED_VERSIONS
+        fi
+        cat $PINNED_VERSIONS | grep $1 > $PINNED_VERSIONS
+        echo $1$'\t'$2 >> $PINNED_VERSIONS
+      fi
+    '';
+
     nix-create-shell = pkgs.writeShellScriptBin "nix-create-shell" ''
       VERSION=$(nix-version)
       IFS="." read PREFIX NAME HASH <<< "$VERSION"
       URL="https://github.com/nixos/nixpkgs/archive/''${HASH}.tar.gz"
-      SHA256=$(nix-prefetch-url --unpack "$URL")
+
+      SHA256=$(${nix-cache-versions}/bin/nix-cache-versions "$HASH")
+      if [ -z "$SHA256" ]; then
+        SHA256=$(nix-prefetch-url --unpack "$URL")
+        ${nix-cache-versions}/bin/nix-cache-versions "$HASH" "$SHA256"
+      fi
 
       cat <<-EOF
       # VERSION=$VERSION
@@ -300,6 +331,7 @@
         jqo
         jqj
         jqr
+        nix-cache-versions
         nix-create-shell
         nix-link-macapps
         nix-open
