@@ -188,7 +188,7 @@
         projectName = "Your project name";
 
         pinnedPkgs = import (builtins.fetchTarball({
-          name = "''$name";
+          name = "''${name}";
           url = "https://github.com/nixos/nixpkgs/archive/''${hash}.tar.gz";
           sha256 = "''${sha256}";
         })) {
