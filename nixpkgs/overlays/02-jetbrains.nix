@@ -1,5 +1,4 @@
-self: super:
-{
+self: super: {
   jetbrains = super.jetbrains // {
     jdk = super.stdenv.mkDerivation rec {
       pname = "jetbrainsjdk";
@@ -7,7 +6,8 @@ self: super:
       darwinVersion = "11_0_6-osx-x64-b${version}";
 
       src = super.fetchurl {
-        url = "https://bintray.com/jetbrains/intellij-jbr/download_file?file_path=jbrsdk-${darwinVersion}.tar.gz";
+        url =
+          "https://bintray.com/jetbrains/intellij-jbr/download_file?file_path=jbrsdk-${darwinVersion}.tar.gz";
         sha256 = "1ra33mp71awhmzf735dq7hxmx9gffsqj9cdp51k5xdmnmb66g12s";
       };
 
@@ -35,18 +35,19 @@ self: super:
 
       meta = with super.lib; {
         homepage = "https://bintray.com/jetbrains/intellij-jdk/";
-        documentation = "https://confluence.jetbrains.com/display/JBR/JetBrains+Runtime";
+        documentation =
+          "https://confluence.jetbrains.com/display/JBR/JetBrains+Runtime";
         license = licenses.gpl2;
         maintainers = with maintainers; [ edwtjo ];
         platforms = with platforms; [ "x86_64-linux" "x86_64-darwin" ];
       };
     };
-  # idea-ultimate = super.jetbrains.idea-ultimate.overrideAttrs (_: {
-  #   name = "idea-ultimate";
-  #   src = super.fetchurl {
-  #     url = "https://download.jetbrains.com/idea/ideaIU-2019.3.3-no-jbr.tar.gz";
-  #	sha256 = "b6ef08b34e38b9d1f637b4179b5c145375f1604208e42e4a605711e368c18a0c";
-  #   };
-  # });
+    # idea-ultimate = super.jetbrains.idea-ultimate.overrideAttrs (_: {
+    #   name = "idea-ultimate";
+    #   src = super.fetchurl {
+    #     url = "https://download.jetbrains.com/idea/ideaIU-2019.3.3-no-jbr.tar.gz";
+    #	sha256 = "b6ef08b34e38b9d1f637b4179b5c145375f1604208e42e4a605711e368c18a0c";
+    #   };
+    # });
   };
 }

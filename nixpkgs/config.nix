@@ -199,6 +199,7 @@
       '')
 
         #nix
+        nixfmt
         nix-prefetch-github
         nix-prefetch-scripts
         undmg
