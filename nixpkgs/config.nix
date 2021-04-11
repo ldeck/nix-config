@@ -131,6 +131,56 @@
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
+    nix-create-shell = pkgs.writeShellScriptBin "nix-create-shell" ''
+      VERSION=$(nix-version)
+      IFS="." read PREFIX NAME HASH <<< "$VERSION"
+      URL="https://github.com/nixos/nixpkgs/archive/''${HASH}.tar.gz"
+      SHA256=$(nix-prefetch-url --unpack "$URL")
+
+      cat <<-EOF
+      # VERSION=$VERSION
+      # PREFIX=$PREFIX
+      # NAME=$NAME
+      # HASH=$HASH
+      # SHA256=$SHA256
+
+      { pkgs ? import <nixpkgs> {},
+        name = "$PREFIX.$NAME";
+        hash ? "$HASH",
+        sha256 ? "$SHA256",
+        ...
+      }:
+      EOF
+      cat <<-'EOF'
+      let
+        pinnedPkgs = import (builtins.fetchTarball({
+          name = "''$name";
+          url = "https://github.com/nixos/nixpkgs/archive/''${hash}.tar.gz";
+          sha256 = "''${sha256}";
+        })) {
+          config = {
+            allowUnfree = true;
+          };
+        };
+      EOF
+      cat <<-'EOF'
+
+        shellName = "Your name";
+
+      in pinnedPkgs.mkShell {
+        name = "''${shellName}";
+        buildInputs = with pinnedPkgs; [
+          man
+          manpages
+        ];
+
+        shellHook = '''
+          echo "Welcome to ''${shellName}"
+        ''';
+      }
+      EOF
+    '';
+
     nix-link-macapps = pkgs.writeShellScriptBin "nix-link-macapps" ''
       #see https://raw.githubusercontent.com/matthewbauer/macNixOS/master/link-apps.sh
       NIX_APPS="$HOME"/.nix-profile/Applications
@@ -181,6 +231,43 @@
       fi
     '';
 
+    nix-system = pkgs.writeShellScriptBin "nix-system" ''
+      nix-shell -p nix-info --run "nix-info -m"
+    '';
+
+    nix-update = pkgs.writeShellScriptBin "nix-update" ''
+      function usage {
+        echo "Usage: nix-update [[-a|--all] | [-n|--nix] [-p|--my-packages] [-e|--my-apps]] [-h | --help]"
+        exit $1
+      }
+
+      if [[ "$#" -eq 0 ]]; then
+        usage 1
+      fi
+
+      while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+          -h|--help) usage 0;;
+          -a|--all) DO_NIX=true; DO_MY_PACKAGES=true; DO_MY_APPS=true;;
+          -n|--nix) DO_NIX=true;;
+          -p|--my-packages) DO_MY_PACKAGES=true;;
+          -e|--my-apps) DO_MY_APPS=true;;
+          *) usage 1;;
+        esac
+        shift
+      done
+
+      set -x
+
+      [ "$DO_NIX" = true ] && nix-channel --update && nix-env -iA nixpkgs.nix nixpkgs.cacert;
+      [ "$DO_MY_PACKAGES" = true ] && nix-env -iA nixpkgs.myPackages;
+      [ "$DO_MY_APPS" = true ] && nix-link-macapps;
+    '';
+
+    nix-version = pkgs.writeShellScriptBin "nix-version" ''
+      nix-instantiate --eval -A 'lib.version' '<nixpkgs>' | xargs
+    '';
+
     sudo-with-touch = pkgs.writeShellScriptBin "sudo-with-touch" ''
       primary=$(cat /etc/pam.d/sudo | head -2 | tail -1 | awk '{$1=$1}1' OFS=",")
       if [ "auth,sufficient,pam_tid.so" != "$primary" ]; then
@@ -213,9 +300,13 @@
         jqo
         jqj
         jqr
+        nix-create-shell
+        nix-link-macapps
         nix-open
         nix-reopen
-        nix-link-macapps
+        nix-system
+        nix-update
+        nix-version
         sudo-with-touch
 
         # bash scripts
