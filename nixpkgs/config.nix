@@ -245,6 +245,7 @@
 
         # devtools
         geckodriver
+        liquibase
         nodePackages.node2nix
         nodePackages.prettier
         myEmacs
