@@ -184,6 +184,9 @@
       EOF
       cat <<-'EOF'
       let
+        baseDir = "${toString ./.}";
+        projectName = "Your project name";
+
         pinnedPkgs = import (builtins.fetchTarball({
           name = "''$name";
           url = "https://github.com/nixos/nixpkgs/archive/''${hash}.tar.gz";
@@ -196,17 +199,15 @@
       EOF
       cat <<-'EOF'
 
-        shellName = "Your name";
-
       in pinnedPkgs.mkShell {
-        name = "''${shellName}";
+        name = "''${projectName}";
         buildInputs = with pinnedPkgs; [
           man
           manpages
         ];
 
         shellHook = '''
-          echo "Welcome to ''${shellName}"
+          echo "Welcome to ''${projectName}"
         ''';
       }
       EOF
