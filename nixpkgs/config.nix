@@ -7,6 +7,11 @@
       export MANPATH=$HOME/.nix-profile/share/man:/nix/var/nix/profiles/default/share/man:/usr/share/man
       export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
 
+      export JAVA_HOME=${java_default}/${java_default_relpath}
+
+      export PATH=''${JAVA_HOME}/bin:$PATH
+      export MANPATH=''${JAVA_HOME}/man:$MANPATH
+
       function cdmkdir() {
         if [[ $# -ne 1 ]]; then
           echo "Usage: cdmkdir <dir>"
@@ -91,27 +96,28 @@
         while read file; do brctl download "$file"; done
     '';
 
+    java_default = jdk15_headless;
+    java_default_relpath = "zulu-15.jdk/Contents/Home";
+
     java_home = pkgs.writeShellScriptBin "java_home" ''
       if [ "$#" -ne 2 ] || [ "$1" != "-v" ] || [ "$2" -lt 8 ]; then
-        echo "Usage: $0 -v <version>";
+        echo "Usage: java_home -v <version>";
         exit 1;
       fi
-      JDK08_HOME="${pkgs.jdk8}"
-      JDK11_HOME="${pkgs.jdk11}"
-      JDK14_HOME="${pkgs.jdk14}"
       case "$2" in
         8)
-          JDK=$JDK08_HOME
+          JDK="${jdk8_headless}"
           ;;
         11)
-          JDK=$JDK11_HOME
+          JDK="${jdk11_headless}"
           ;;
         *)
-          JDK=$JDK14_HOME
+          JDK="${jdk15_headless}"
           ;;
         esac
         echo "$JDK"
     '';
+
 
     jqo = pkgs.writeShellScriptBin "jqo" ''
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .prefix,(.json|try fromjson catch ""),.suffix | select(length > 0)'
@@ -230,7 +236,6 @@
         vgo2nix
 
         # java
-        jdk11
         visualvm
 
         # js
