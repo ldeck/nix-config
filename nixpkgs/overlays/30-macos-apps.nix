@@ -81,12 +81,12 @@ Discord = self.installApplication rec {
 
 Docker = self.installApplication rec {
   name = "Docker";
-  version = "3.2.2";
-  revision = "61853";
+  version = "3.3.0";
+  revision = "62916";
   sourceRoot = "${name}.app";
   src = super.fetchurl {
     url = "https://desktop.docker.com/mac/stable/amd64/${revision}/${name}.dmg";
-    sha256 = "0sxapv6n1adncdi69haadjdylb60h352ay7yq83xz83fyhwl0kf4";
+    sha256 = "028izydix9nsd6bwaf1555s7czapbr9qhi4gnydx802a99yslcym";
   };
   description = ''
     Docker CE for Mac is an easy-to-install desktop app for building,
