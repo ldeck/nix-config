@@ -391,6 +391,7 @@
         editorconfig-custom-majormode
         editorconfig-domain-specific
         editorconfig-generate
+        expand-region
         flycheck-plantuml
         dired-subtree
         dumb-jump
