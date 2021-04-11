@@ -19,6 +19,7 @@ installApplication =
       homepage = homepage;
       maintainers = with maintainers; [ jwiegley ];
       platforms = platforms.darwin;
+      priority = -100;
     };
   };
 
