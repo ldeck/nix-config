@@ -142,10 +142,15 @@
   :after magit
   :config
   (setq forge-owned-accounts '())
-  (add-to-list 'forge-owned-accounts (if
-                                         (null (getenv "FORGE_OWNED_ACCOUNTS"))
-                                         (getenv "USER")
-                                       (getenv "FORGE_OWNED_ACCOUNTS"))))
+  (let ((accounts (remove nil
+                          (list
+                           (getenv "FORGE_OWNED_ACCOUNTS")
+                           (getenv "USER")))))
+    (if accounts
+        (progn
+          (message "Configuring forge-owned-accounts: %s" accounts)
+          (add-to-list 'forge-owned-accounts accounts)
+          ))))
 
 (use-package format-all)
 
