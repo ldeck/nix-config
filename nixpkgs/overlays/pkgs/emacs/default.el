@@ -15,6 +15,8 @@
 (setq-default indent-tabs-mode nil)
 (delete-selection-mode 1)
 
+(load-theme 'wombat t)
+
 ;; functions
 (defun endless/visit-pull-request-url-github ()
   "Visit the current branch's PR on Github."
