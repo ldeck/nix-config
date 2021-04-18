@@ -18,47 +18,20 @@
 (load-theme 'wombat t)
 
 ;; functions
-(defun endless/visit-pull-request-url-github ()
-  "Visit the current branch's PR on Github."
-  (interactive)
-  (browse-url
-   (format "https://github.com/%s/pull/new/%s"
-           (replace-regexp-in-string
-            "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
-            (magit-get "remote"
-                       (magit-get-push-remote)
-                       "url"))
-           (magit-get-current-branch))))
-
-(defun endless/visit-pull-request-url-gitlab ()
-  "Visit the current branch's PR on Gitlab."
-  (interactive)
-  (browse-url
-   (format "https://gitlab.com/%s/pull/new/%s"
-           (replace-regexp-in-string
-            "\\`.+gitlab\\.com:\\(.+\\)\\.git\\'" "\\1"
-            (magit-get "remote"
-                       (magit-get-push-remote)
-                       "url"))
-           (magit-get-current-branch))))
 
 (defun with-ldeck-magit-mode-customisations ()
   "Add custom magit popup and transient switch."
   (interactive)
-  (magit-define-popup-action 'magit-commit-popup
-                             ?n "Reshelve commit" 'magit-commit-reshelve)
-  (magit-define-popup-switch 'magit-push-popup
-                             ?S "Skip gitlab pipeline creation" "--push-option=ci.skip")
-  (magit-define-popup-option 'magit-push-popup
-                             ?O "Set extra push option #1" "--push-option=")
-  (magit-define-popup-option 'magit-push-popup
-                             ?P "Set extra push option #2" "--push-option=")
-  (magit-define-popup-action 'magit-rebase-popup
-                             ?t "Reshelve since" 'magit-reshelve-since)
-  (magit-define-popup-action 'magit-push-popup
-                             ?G "Create pull request (github.com)" 'endless/visit-pull-request-url-github)
-  (magit-define-popup-action 'magit-push-popup
-                             ?L "Create pull request (gitlab.com)" 'endless/visit-pull-request-url-gitlab)
+  (transient-append-suffix 'magit-commit "a"
+    '("n" "Reshelve commit" magit-commit-reshelve))
+  (transient-append-suffix 'magit-rebase "s"
+    '("t" "Reshelve since" magit-reshelve-since))
+  (transient-append-suffix 'magit-push "-n"
+    '("=O" "Set extra push option #1" "--push-option=" read-from-minibuffer))
+  (transient-append-suffix 'magit-push "-n"
+    '("=P" "Set extra push option #2" "--push-option=" read-from-minibuffer))
+  (transient-append-suffix 'magit-push "-n"
+    '("-S" "Skip gitlab pipeline creation" "--push-option=ci.skip"))
   )
 
 (defun ldeck-flash-mode-line ()
