@@ -103,15 +103,15 @@
   :init (setq company-dabbrev-downcase nil)
   :config (global-company-mode))
 
-(use-package counsel
-  :commands (counsel-descbinds)
-  :bind (([remap execute-extended-command] . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-c g f" . counsel-git)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-ag)
-         ("C-x l" . counsel-locate)
-         ("M-y" . counsel-yank-pop)))
+;; (use-package counsel
+;;   :commands (counsel-descbinds)
+;;   :bind (([remap execute-extended-command] . counsel-M-x)
+;;          ("C-x C-f" . counsel-find-file)
+;;          ("C-c g f" . counsel-git)
+;;          ("C-c j" . counsel-git-grep)
+;;          ("C-c k" . counsel-ag)
+;;          ("C-x l" . counsel-locate)
+;;          ("M-y" . counsel-yank-pop)))
 
 (use-package crux
   :ensure t

@@ -507,7 +507,7 @@
       (with epkgs.melpaPackages; [
         company
         company-terraform
-        counsel
+        # counsel
         docker
         dockerfile-mode
         docker-compose-mode
@@ -516,6 +516,7 @@
         editorconfig-domain-specific
         editorconfig-generate
         expand-region
+        flycheck
         flycheck-plantuml
         dired-subtree
         dumb-jump
@@ -538,7 +539,6 @@
         browse-at-remote
         crux
         expand-region
-        flycheck
         format-all
         git-messenger
         git-timemachine
