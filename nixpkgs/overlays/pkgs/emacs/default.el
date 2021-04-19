@@ -17,6 +17,7 @@
 
 (load-theme 'wombat t)
 (set-cursor-color "#00F900")
+(add-to-list 'default-frame-alist '(cursor-color . "#00F900"))
 
 ;; functions
 
