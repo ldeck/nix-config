@@ -16,6 +16,7 @@
 (delete-selection-mode 1)
 
 (load-theme 'wombat t)
+(set-cursor-color "#00F900")
 
 ;; functions
 
