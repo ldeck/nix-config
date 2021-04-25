@@ -489,14 +489,18 @@
     # editor derivations
     # =======================
 
-    myEmacsConfig = ./overlays/pkgs/emacs/default.el;
+    myEmacsConfig = ./overlays/pkgs/emacs;
+    myCustomConfig = ../custom/emacsg;
 
     myEmacs = emacsWithPackages (epkgs:
       # CONFIG setup
       [
         (runCommand "default.el" {} ''
           mkdir -p $out/share/emacs/site-lisp
-          cp ${myEmacsConfig} $out/share/emacs/site-lisp/default.el
+          cp ${myEmacsConfig}/*.el $out/share/emacs/site-lisp/
+
+          mkdir -p $out/share/emacs/site-lisp/custom
+          cp ${myCustomConfig}/*.el $out/share/emacs/site-lisp/custom/
         '')
       ] ++
 
