@@ -318,6 +318,7 @@
       '')
 
         #nix
+        niv
         nixfmt
         nix-prefetch-github
         nix-prefetch-scripts
