@@ -490,7 +490,7 @@
     # =======================
 
     myEmacsConfig = ./overlays/pkgs/emacs;
-    myCustomConfig = ../custom/emacsg;
+    myBaseDir = "${toString ./..}";
 
     myEmacs = emacsWithPackages (epkgs:
       # CONFIG setup
@@ -499,8 +499,10 @@
           mkdir -p $out/share/emacs/site-lisp
           cp ${myEmacsConfig}/*.el $out/share/emacs/site-lisp/
 
-          mkdir -p $out/share/emacs/site-lisp/custom
-          cp ${myCustomConfig}/*.el $out/share/emacs/site-lisp/custom/
+          if [ -d ${myBaseDir}/custom/emacs ]; then
+            mkdir -p $out/share/emacs/site-lisp/custom
+            cp ${myBaseDir}/custom/emacs/*.el $out/share/emacs/site-lisp/custom/
+          fi
         '')
       ] ++
 
