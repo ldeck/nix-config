@@ -12,6 +12,17 @@
       export PATH=''${JAVA_HOME}/bin:$PATH
       export MANPATH=''${JAVA_HOME}/man:$MANPATH
 
+      # install node globals in user dir
+      export NPM_PACKAGES=$HOME/.npm-packages
+      mkdir -p $NPM_PACKAGES
+
+      if ! [ -f "$HOME/.npmrc" ]; then
+        echo "prefix = $NPM_PACKAGES" >> ~/.npmrc
+      fi
+      export PATH="$NPM_PACKAGES/bin:$PATH"
+      export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+      export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
       function cdmkdir() {
         if [[ $# -ne 1 ]]; then
           echo "Usage: cdmkdir <dir>"
@@ -369,11 +380,13 @@
         nodejs-14_x
         yarn
 
+        #node packages
+        nodePackages.node2nix
+        nodePackages.prettier
+
         # devtools
         geckodriver
         liquibase
-        nodePackages.node2nix
-        nodePackages.prettier
         myEmacs
         plantuml
         python38Packages.yamllint
