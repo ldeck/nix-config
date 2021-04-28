@@ -349,6 +349,7 @@
 
         # cloud
         ansible
+        awscli2
         cloudfoundry-cli
         google-cloud-sdk
         cloud-sql-proxy
