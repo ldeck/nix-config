@@ -107,7 +107,7 @@
         while read file; do brctl download "$file"; done
     '';
 
-    java_default = jdk15_headless;
+    java_default = jdk16_headless;
     java_default_relpath = "zulu-15.jdk/Contents/Home";
 
     java_home = pkgs.writeShellScriptBin "java_home" ''
@@ -123,7 +123,7 @@
           JDK="${jdk11_headless}"
           ;;
         *)
-          JDK="${jdk15_headless}"
+          JDK="${jdk16_headless}"
           ;;
         esac
         echo "$JDK"
