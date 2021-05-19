@@ -320,6 +320,8 @@
       fi
     '';
 
+    myApps = pkgs.callPackage ./custom/apps { pkgs = pkgs; };
+
     myPackages = buildEnv {
       name = "my-packages";
       paths = [
