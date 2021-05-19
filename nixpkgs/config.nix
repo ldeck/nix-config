@@ -360,6 +360,7 @@
 
         # cloud
         ansible
+        # aws-sam-cli
         awscli2
         cloudfoundry-cli
         google-cloud-sdk
