@@ -190,7 +190,7 @@ let
     (app rec {
       name = "GoogleChrome";
       appname = "Google Chrome";
-      version = "88.0.4324.192";
+      version = "90.0.4430.212";
       sourceRoot = "Google Chrome.app";
       src = fetchurl {
         url = "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg";
