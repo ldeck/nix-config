@@ -108,7 +108,7 @@
     '';
 
     java_default = jdk16_headless;
-    java_default_relpath = "zulu-15.jdk/Contents/Home";
+    java_default_relpath = "zulu-16.jdk/Contents/Home";
 
     java_home = pkgs.writeShellScriptBin "java_home" ''
       if [ "$#" -ne 2 ] || [ "$1" != "-v" ] || [ "$2" -lt 8 ]; then
