@@ -24,12 +24,12 @@ nix-env -iA nixpkgs.myPackages
 NB: nothing will change if you've not changed any config and/or updated nix itself. See [Upgrading Nix](https://nixos.org/manual/nix/unstable/installation/upgrading.html).
 
 
-## Install macOS derivations ##
+## Install macOS apps ##
 
-See list of macOS apps in overlay [30-macos-apps.nix](nixpkgs/overlays/30-macos-apps.nix)
+See list of macOS apps in [nixpkgs/custom/apps/default.nix](nixpkgs/custom/apps/default.nix)
 
 ``` shell
-nix-env -i IntelliJIDEA
+nix-env -iA nixpkgs.myApps
 ```
 
 ## Custom scripts ##
