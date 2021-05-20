@@ -99,6 +99,26 @@ Pipe stdout to jqo to handle intermixed json and standard messages
 
     Usage: ... | jqo
 
+### jqj ###
+
+Pipe stdout to jqj to handle intermixed json and standard messages
+
+    Usage: ... | jqj
+
+### jqr ###
+
+Pipe stdout to jqr to handle intermixed json and standard messages
+
+    Usage: ... | jqr
+
+### nix-cache-versions ###
+
+pin versions in ~/.cache/pinned-versions.tsv
+
+### nix-create-shell ###
+
+shell.nix template with pinned pkgs
+
 ### nix-link-macapps ###
 
 Symlinks `~/.nix-profile/Applications/*` to `~/Applications`.
@@ -116,6 +136,18 @@ Open nix or system-installed apps (found using app-path).
 Re-open nix or system-installed apps (found using app-path).
 
     Usage: nix-reopen application [args...]
+
+### nix-system ###
+
+Shortcut for `nix-shell -p nix-info --run "nix-info -m"`
+
+### nix-update ###
+
+update nix, nixpkgs, myPackages, myApps and symlinks
+
+### nix-version ###
+
+shortcut for `nix-instantiate --eval -A 'lib.version' '<nixpkgs>' | xargs`
 
 ### sudo-with-touch ###
 
