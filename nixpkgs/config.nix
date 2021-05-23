@@ -431,6 +431,7 @@
         ripgrep
         silver-searcher
         taskwarrior
+        tree
         #yq
       ];
       pathsToLink = [ "/share/man" "/share/doc" "/bin" "/etc" "/Applications" ];
