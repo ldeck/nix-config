@@ -275,6 +275,7 @@
     '';
 
     nix-system = pkgs.writeShellScriptBin "nix-system" ''
+      echo 'nix-shell -p nix-info --run "nix-info -m"'
       nix-shell -p nix-info --run "nix-info -m"
     '';
 
