@@ -284,6 +284,12 @@
         exit $1
       }
 
+      function hasMyApps {
+        installed=$(nix-env -q | grep my-apps | wc -l)
+        possible=$(nix-instantiate --quiet --quiet -E 'with import <nixpkgs> { }; myApps' 2>&1 | grep error | wc -l)
+        [ "$installed" -gt 0 ] && [ "$possible" -eq ];
+      }
+
       if [[ "$#" -eq 0 ]]; then
         usage 1
       fi
@@ -300,11 +306,9 @@
         shift
       done
 
-      set -x
-
       [ "$DO_NIX" = true ] && nix-channel --update && nix-env -iA nixpkgs.nix nixpkgs.cacert;
       [ "$DO_MY_PACKAGES" = true ] && nix-env -iA nixpkgs.myPackages;
-      [ "$DO_MY_APPS" = true ] && nix-link-macapps;
+      [ "$DO_MY_APPS" = true ] && hasMyApps && nix-env -iA nixpkgs.myApps && nix-link-macapps;
     '';
 
     nix-version = pkgs.writeShellScriptBin "nix-version" ''
