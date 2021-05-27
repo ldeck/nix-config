@@ -538,10 +538,13 @@
         company
         company-terraform
         # counsel
+        dired-subtree
         direnv
         docker
-        dockerfile-mode
         docker-compose-mode
+        dockerfile-mode
+        dtrt-indent
+        dumb-jump
         editorconfig
         editorconfig-custom-majormode
         editorconfig-domain-specific
@@ -549,8 +552,6 @@
         expand-region
         flycheck
         flycheck-plantuml
-        dired-subtree
-        dumb-jump
         forge
         gitlab-ci-mode
         gitlab-ci-mode-flycheck
@@ -558,8 +559,8 @@
         ivy
         dtrt-indent
         magit
-        symbol-overlay
         plantuml-mode
+        symbol-overlay
         terraform-doc
         undo-propose
         yasnippet
