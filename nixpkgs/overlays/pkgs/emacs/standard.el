@@ -251,6 +251,9 @@
   :config
   (which-key-mode +1))
 
+(use-package yasnippet
+  :config (yas-global-mode))
+
 (use-package yaml-mode
   :mode ("\\.yml$" "\\.yaml$")
   :init

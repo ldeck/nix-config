@@ -562,6 +562,7 @@
         plantuml-mode
         terraform-doc
         undo-propose
+        yasnippet
       ]) ++
 
       # MELPA stable packages
