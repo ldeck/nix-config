@@ -77,6 +77,11 @@
   (message "Loading custom module files in %s..." custom-dir)
   (mapc 'load (directory-files custom-dir 't "^[^#\.].*\\.el$")))
 
+;; Enable defer and ensure by default for use-package
+;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
+(setq
+ backup-directory-alist `((".*" . ,temporary-file-directory))
+ auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 (provide 'default)
 
