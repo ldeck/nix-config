@@ -538,6 +538,7 @@
         company
         company-terraform
         # counsel
+        direnv
         docker
         dockerfile-mode
         docker-compose-mode

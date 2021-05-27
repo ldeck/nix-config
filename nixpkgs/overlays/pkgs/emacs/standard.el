@@ -78,6 +78,10 @@
               ("<tab>" . dired-subtree-toggle)
               ("<backtab>" . dired-subtree-cycle)))
 
+(use-package direnv
+ :config
+ (direnv-mode))
+
 (use-package editorconfig
   :ensure t
   :config
