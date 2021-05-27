@@ -538,6 +538,7 @@
         company
         company-terraform
         # counsel
+        dap-mode
         dired-subtree
         direnv
         docker
@@ -556,8 +557,13 @@
         gitlab-ci-mode
         gitlab-ci-mode-flycheck
         helm-flyspell
+        helm-lsp
+        hydra
         ivy
-        dtrt-indent
+        lsp-java
+        lsp-mode
+        lsp-treemacs
+        lsp-ui
         magit
         plantuml-mode
         symbol-overlay
