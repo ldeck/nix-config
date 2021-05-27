@@ -572,6 +572,7 @@
         symbol-overlay
         terraform-doc
         undo-propose
+        vterm
         yasnippet
       ]) ++
 
