@@ -98,7 +98,7 @@
   :bind ("M-m" . er/expand-region))
 
 (use-package flycheck
-  :config (global-flycheck-mode))
+  :init (global-flycheck-mode))
 
 (use-package forge
   :ensure t
