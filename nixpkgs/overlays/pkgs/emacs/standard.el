@@ -53,8 +53,11 @@
   :bind ("<C-tab>" . company-complete)
   :diminish company-mode
   :commands (company-mode global-company-mode)
+  :hook (scala-mode . company-mode)
   :init (setq company-dabbrev-downcase nil)
-  :config (global-company-mode))
+  :config
+  (setq lsp-completion-provider :capf)
+  (global-company-mode))
 
 ;; (use-package counsel
 ;;   :commands (counsel-descbinds)
@@ -192,6 +195,13 @@
   :config (ivy-mode 1))
 
 (use-package lsp-java)
+(use-package lsp-metals
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  ) ;; scala
 
 (use-package lsp-mode
   :init
@@ -200,12 +210,16 @@
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (java-mode . lsp-deferred)
          (java-mode . lsp-java-boot-lens-mode)
+         (scala-mode . lsp-deferred)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-lens-mode)
          )
   :commands (lsp-deferred)
-  :config (setq lsp-completion-enable-additional-text-edit nil))
+  :config
+  (setq lsp-completion-enable-additional-text-edit nil)
+  (setq lsp-prefer-flymake nil)
+  )
 
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -241,6 +255,8 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+(use-package posframe) ;; scala etc. debug aaptor protocol for running/debugging tests
+
 (use-package projectile
   :commands projectile-mode
   :bind-keymap ("C-c p" . projectile-command-map)
@@ -266,6 +282,23 @@
   :config
   (autoload 'dtrt-indent-mode "dtrt-indent" "Adapt to foreign indentation offsets" t)
   (add-hook 'c-mode-common-hook 'dtrt-indent-mode))
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+   (setq sbt:program-options '("-Dsbt.supershell=false"))
+)
+
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
 
 (use-package smartparens
   :ensure t

@@ -561,11 +561,14 @@
         hydra
         ivy
         lsp-java
+        lsp-metals
         lsp-mode
         lsp-treemacs
         lsp-ui
         magit
         plantuml-mode
+        sbt-mode
+        scala-mode
         symbol-overlay
         terraform-doc
         undo-propose
