@@ -23,6 +23,12 @@
     '("-S" "Skip gitlab pipeline creation" "--push-option=ci.skip"))
   )
 
+(require 'use-package)
+
+;; Enable defer and ensure by default for use-package
+;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
+(setq use-package-always-defer t
+      use-package-always-ensure t)
 
 ;; load some packages
 (use-package undo-tree
