@@ -44,7 +44,6 @@
   :bind ("C-c g r" . browse-at-remote))
 
 (use-package company
-  :defer 1
   :bind ("<C-tab>" . company-complete)
   :diminish company-mode
   :commands (company-mode global-company-mode)
@@ -89,7 +88,6 @@
   :bind ("M-m" . er/expand-region))
 
 (use-package flycheck
-  :defer 2
   :config (global-flycheck-mode))
 
 (use-package forge
@@ -126,7 +124,6 @@
   :ensure t)
 
 (use-package helm
-  :defer 2
   :config
   ;;(helm-mode 1)
   (require 'helm-config)
@@ -164,7 +161,6 @@
   (helm-projectile-on))
 
 (use-package ivy
-  :defer 1
   :bind (("C-c C-r" . ivy-resume)
          ("C-x C-b" . ivy-switch-buffer)
          :map ivy-minibuffer-map
@@ -174,7 +170,6 @@
   :config (ivy-mode 1))
 
 (use-package magit
-  :defer
   :if (executable-find "git")
   :bind (("C-x g" . magit-status)
          ("C-x G" . magit-dispatch))
@@ -185,7 +180,6 @@
   :mode ("\\.markdown\\'" "\\.md\\'"))
 
 (use-package move-text
-  :defer 1
   :config (move-text-default-bindings))
 
 (use-package nix-mode
@@ -194,7 +188,6 @@
 (use-package projectile
   :commands projectile-mode
   :bind-keymap ("C-c p" . projectile-command-map)
-  :defer 5
   :config
   (projectile-mode)
   (setq projectile-switch-project-action 'projectile-find-file)
@@ -233,7 +226,6 @@
 
 (use-package undo-propose
   :commands undo-propose
-  :defer 1
   :init
   :bind ("C-c u" . undo-propose))
 
