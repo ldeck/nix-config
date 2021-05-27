@@ -216,7 +216,12 @@
 ;;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-(use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+(use-package dap-mode
+  :after lsp-mode
+  :hook
+  (lsp-mode . dap-mode)
+  (lsp-mode . dap-ui-mode)
+  :config (dap-auto-configure-mode))
 (use-package dap-java :ensure nil)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
