@@ -318,7 +318,7 @@
       function hasMyApps {
         installed=$(nix-env -q | grep my-apps | wc -l)
         possible=$(nix-instantiate --quiet --quiet -E 'with import <nixpkgs> { }; myApps' 2>&1 | grep error | wc -l)
-        [ "$installed" -gt 0 ] && [ "$possible" -eq ];
+        [ "$installed" -gt 0 ] && [ "$possible" -eq 0 ];
       }
 
       if [[ "$#" -eq 0 ]]; then
