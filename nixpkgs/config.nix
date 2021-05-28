@@ -23,6 +23,15 @@
       export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
       export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
+      # aliases
+      alias e='emacs -Q -nw'
+      alias ec='emacsclient -nw -c'
+      #alias ec="emacsclient -nw -c -s $(lsof -c Emacs | grep server | tr -s " " | cut -d' ' -f8)"
+      alias ll='ls -lAFG'
+      alias l='ls -laFG'
+      alias recd="cd ~ && cd -"
+
+      # functions
       function cdmkdir() {
         if [[ $# -ne 1 ]]; then
           echo "Usage: cdmkdir <dir>"
