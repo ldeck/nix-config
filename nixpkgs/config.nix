@@ -142,6 +142,20 @@
         echo "$JDK"
     '';
 
+    #
+    # JSON
+    #
+    ajqo = pkgs.writeShellScriptBin "ajqo" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture(\"(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)\") | .prefix,(.json|try fromjson catch \"\"),.suffix | select(length > 0)'
+    '';
+
+    ajqj = pkgs.writeShellScriptBin "ajqj" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture(\"(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)\") | (.json|try fromjson catch \"\") | select(length > 0)'
+    '';
+
+    ajqr = pkgs.writeShellScriptBin "ajqr" ''
+      ${pkgs.jq}/bin/jq -R -r 'capture(\"(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)\") | .json | select(length > 0)'
+    '';
 
     jqo = pkgs.writeShellScriptBin "jqo" ''
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .prefix,(.json|try fromjson catch ""),.suffix | select(length > 0)'
@@ -155,6 +169,9 @@
       ${pkgs.jq}/bin/jq -R -r 'capture("(?<prefix>[^{]*)(?<json>{.+})?(?<suffix>.*)") | .json | select(length > 0)'
     '';
 
+    #
+    # NIX
+    #
     nix-cache-versions = pkgs.writeShellScriptBin "nix-cache-versions" ''
       function usage {
         echo "Usage: nix-cache-versions <version> [<sha256>]"
@@ -357,6 +374,9 @@
         styx
 
         # custom
+        ajqj
+        ajqo
+        ajqr
         app-path
         future-git
         idownload
