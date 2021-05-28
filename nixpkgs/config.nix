@@ -40,6 +40,10 @@
         mkdir -p $1
         cd $1
       }
+      function mvndebug() {
+        PORT="''${1:-5005}"
+        MAVEN_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=$PORT mvn
+      }
     '';
 
     app-path = pkgs.writeShellScriptBin "app-path" ''
