@@ -181,11 +181,11 @@ GoogleChrome = self.installApplication rec {
 
 Insomnia = self.installApplication rec {
   name = "Insomnia";
-  version = "2020.5.2";
+  version = "2021.3.0";
   sourceRoot = "Insomnia.app";
   src = super.fetchurl {
     url = "https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.dmg";
-    sha256 = "1ll88ngfiavacx0pq96lpmshp99k1x5ypk00xnww53y81gila21h";
+    sha256 = "0m852vpjc7nvy994mddv30z8305hdhljprm2rx9z20rwzjjhsgcg";
   };
   description = "Cross-platform HTTP and GraphQL Client";
   homepage = https://insomnia.rest;
