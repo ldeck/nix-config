@@ -149,11 +149,11 @@ let
 
     (app rec {
       name = "FreeRuler";
-      version = "2.0.3";
+      version = "2.0.5";
       sourceRoot = "Free Ruler.app";
       src = fetchurl {
         url = "https://github.com/pascalpp/FreeRuler/releases/download/v${version}/free-ruler-${version}.zip";
-        sha256 = "17fsjb2x5037k31ig4czgnv6s3dii3kjkczdpak4kqhkq43qjhma";
+        sha256 = "0ka4cvx58102hqn7mnxp9hphrqka9m4bax2z9azqviag58jvjck3";
       };
       description = "A ruler application for macOS";
       homepage = "http://www.pascal.com/software/freeruler/";
