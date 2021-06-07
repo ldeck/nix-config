@@ -277,12 +277,12 @@ Signal = self.installApplication rec {
 
 TibcoJaspersoftStudio = self.installApplication rec {
   name = "TibcoJaspersoftStudio";
-  version = "6.16.0";
+  version = "6.17.0";
   appname = "Tibco Jaspersoft Studio";
   sourceRoot = "TIBCO Jaspersoft Studio ${version}.app";
   src = super.fetchurl {
     url = "https://downloads.sourceforge.net/jasperstudio/JaspersoftStudio-${version}/TIB_js-studiocomm_${version}_macosx_x86_64.dmg";
-    sha256 = "0ph9680c404yicdly38vadri651wf3h0c882bg6j9i2aikw97x2w";
+    sha256 = "0cayzfwr8w2p6ha2rhmb5jl42a0qlrw1gyk6dnc2hf71fvfm51p5";
   };
   description = "The Eclipse-based report development tool for JasperReports and JasperReports Server";
   homepage = https://community.jaspersoft.com/project/jaspersoft-studio;
