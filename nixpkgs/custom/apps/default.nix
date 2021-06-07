@@ -287,11 +287,11 @@ let
 
     (app rec {
       name = "Signal";
-      version = "1.39.4";
+      version = "5.4.0";
       sourceRoot = "${name}.app";
       src = fetchurl {
         url = "https://updates.signal.org/desktop/signal-desktop-mac-${version}.dmg";
-        sha256 = "0di73h6hf8py18l1xgzh35lq1hpvm17lnavb9pan9w5wp29x35w6";
+        sha256 = "0rkbg67kajhykdsx799ljphbz00fak9dyyp4sxl12sdv77ajzc8j";
       };
       description = "Cross-platform instant messaging application focusing on security";
       homepage = "https://signal.org/";
