@@ -130,12 +130,12 @@ let
 
     (app rec {
       name = "Firefox";
-      version = "88.0.1";
+      version = "89.0";
       sourceRoot = "Firefox.app";
       src = fetchurl {
         name = "Firefox-${version}.dmg";
         url = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${version}/mac/en-US/Firefox+${version}.dmg";
-        sha256 = "0z9p6jng7is8pq21dffjr6mfk81q08v99fwmhj22g9b1miqxrvcz";
+        sha256 = "0z86q1hlwmhfwrddhapwiy8qrn3v03d7nbsnzhnkr3fc9vz58ga3";
       };
       postInstall = ''
         mkdir -p $out/bin
