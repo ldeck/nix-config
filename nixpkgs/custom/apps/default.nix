@@ -273,11 +273,11 @@ let
 
     (app rec {
       name = "Postman";
-      version = "7.36.1";
+      version = "8.6.1";
       sourceRoot = "${name}.app";
       src = fetchurl {
         url = "https://dl.pstmn.io/download/version/${version}/osx64";
-        sha256 = "1jcjs8xhv7ybh5ksf77h5x86f5blv8cypaba3k3xycxhy02ylwzk";
+        sha256 = "1jywsx3fgjgj8rvqzp02nnza545svcsk45jdxvyna13ddnmldkvi";
         name = "${name}-osx-${version}.zip";
       };
       description = "Collaboration platform for API development";
