@@ -97,10 +97,8 @@ Docker = self.installApplication rec {
 
   postInstall = ''
     mkdir -p $out/bin
-    BINDIR="$out/Applications/${name}.app/Contents/Resources/bin"
-    for f in `ls $BINDIR | grep docker`; do
-      ln -fs "$BINDIR/$f" $out/bin/$f
-    done
+    mkdir -p $out/bin
+    ln -fs $out/Applications/${name}.app/Contents/Resources/bin/docker* $out/bin/
     #todo: add etc/docker[-compose].[bash|zsh]-completion
   '';
 };

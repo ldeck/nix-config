@@ -105,12 +105,12 @@ let
 
     (app rec {
       name = "Docker";
-      version = "3.3.3";
-      revision = "64133";
+      version = "3.4.0";
+      revision = "65384";
       sourceRoot = "${name}.app";
       src = fetchurl {
         url = "https://desktop.docker.com/mac/stable/amd64/${revision}/${name}.dmg";
-        sha256 = "0idzwww7i4spf2gc83z2vhnq64hygd5fpcbkly9xrq9qzmdn8hzi";
+        sha256 = "13l27995zd1s6sd0zkmsmszn4dzilp0yg1ylazix383qq323dq2m";
       };
       description = ''
         Docker CE for Mac is an easy-to-install desktop app for building,
@@ -120,10 +120,7 @@ let
       appcast = https://download.docker.com/mac/stable/appcast.xml;
       postInstall = ''
         mkdir -p $out/bin
-        BINDIR="$out/Applications/${name}.app/Contents/Resources/bin"
-        for f in `ls $BINDIR | grep docker`; do
-          ln -fs "$BINDIR/$f" $out/bin/$f
-        done
+        ln -fs $out/Applications/${name}.app/Contents/Resources/bin/docker* $out/bin/
         #todo: add etc/docker[-compose].[bash|zsh]-completion
       '';
     })
@@ -337,5 +334,5 @@ in
 pkgs.buildEnv {
   name = "my-apps";
   paths = [] ++ lib.optionals stdenv.isDarwin macOSApps;
-  pathsToLink = [ "/Applications" ];
+  pathsToLink = [ "/Applications" "/bin" ];
 }
