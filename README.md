@@ -9,6 +9,14 @@ My [nixos](https://nixos.org) nixpkgs single user config (macOS)
 
 Install [nix](https://nixos.org/nix/) purely functional package manager (single-user).
 
+Go to [Single User Installation](https://nixos.org/manual/nix/unstable/installation/installing-binary.html#single-user-installation)
+
+It be may required for you to create a Nix Store volume because the default drive is encrypted.
+
+    sudo diskutil apfs addVolume disk1 'APFS' 'Nix Store' -mountpoint /nix
+    sh <(curl -L https://nixos.org/nix/install) --no-daemon
+
+
 ### Clone Location ###
 
 ``` shell
@@ -23,6 +31,12 @@ nix-env -iA nixpkgs.myPackages
 
 NB: nothing will change if you've not changed any config and/or updated nix itself. See [Upgrading Nix](https://nixos.org/manual/nix/unstable/installation/upgrading.html).
 
+### Link Shell ###
+
+e.g., ~/.zshrc
+
+    #!/bin/sh
+    source $HOME/.config/shell/.profile
 
 ## Install macOS apps ##
 
