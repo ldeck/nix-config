@@ -259,6 +259,9 @@
       NIX_APPS="$HOME"/.nix-profile/Applications
       APP_DIR="$HOME"/Applications
 
+      # ensure ~/Applications exists
+      mkdir -p $APP_DIR
+
       # create links
       pushd "$APP_DIR" > /dev/null
       find "$NIX_APPS" -type l -exec ln -fs {} . ';'
