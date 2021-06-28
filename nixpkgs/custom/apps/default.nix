@@ -187,12 +187,12 @@ let
     (app rec {
       name = "GoogleChrome";
       appname = "Google Chrome";
-      version = "91.0.4472.77";
+      version = "91.0.4472.114";
       sourceRoot = "Google Chrome.app";
       src = fetchurl {
         url = "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg";
         # https://www.slimjet.com/chrome/google-chrome-old-version.php
-        sha256 = "1nba609jkvhcjj8ic6plwxmh1ydjbg7splw454sfcw2qbnkl3c14";
+        sha256 = "1fqxxa2cjqnhfpxw0qrfz6wyzk18viz8m58jvmp6v6axa4if6cvg";
       };
       description = "The Google Chrome browser";
       homepage = "https://www.google.com/chrome/";
