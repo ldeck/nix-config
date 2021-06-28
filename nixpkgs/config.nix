@@ -339,7 +339,7 @@
 
       [ "$DO_NIX" = true ] && nix-channel --update && nix-env -iA nixpkgs.nix nixpkgs.cacert;
       [ "$DO_MY_PACKAGES" = true ] && nix-env -iA nixpkgs.myPackages;
-      [ "$DO_MY_APPS" = true ] && hasMyApps && nix-env -iA nixpkgs.myApps && nix-link-macapps;
+      [ "$DO_MY_APPS" = true ] && nix-env -iA nixpkgs.myApps && nix-link-macapps;
     '';
 
     nix-version = pkgs.writeShellScriptBin "nix-version" ''
