@@ -195,6 +195,7 @@
         editorconfig-custom-majormode
         editorconfig-domain-specific
         editorconfig-generate
+        exec-path-from-shell
         expand-region
         flycheck
         flycheck-plantuml

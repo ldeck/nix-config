@@ -36,8 +36,8 @@
 (add-to-list 'default-frame-alist '(cursor-color . "#00F900"))
 
 ;; set path
-(add-to-list 'exec-path (expand-file-name "~/.nix-profile/bin"))
-(setenv "PATH" (mapconcat 'identity exec-path ":"))
+;;(add-to-list 'exec-path (expand-file-name "~/.nix-profile/bin"))
+;;(setenv "PATH" (mapconcat 'identity exec-path ":"))
 
 ;; disable audible bell
 (defun ldeck-flash-mode-line ()
