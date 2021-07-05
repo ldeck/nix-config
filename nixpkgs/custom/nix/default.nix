@@ -5,52 +5,19 @@
 }:
 
 let
-  java_default = pkgs.jdk16_headless;
-  java_default_relpath = "zulu-16.jdk/Contents/Home";
-
-  javaEnv = rec {
-
-    java_home = pkgs.writeShellScriptBin "java_home" ''
-      if [ "$#" -ne 2 ] || [ "$1" != "-v" ] || [ "$2" -lt 8 ]; then
-        echo "Usage: java_home -v <version>";
-        exit 1;
-      fi
-      case "$2" in
-        8)
-          JDK="${pkgs.jdk8_headless}"
-          ;;
-        11)
-          JDK="${pkgs.jdk11_headless}"
-          ;;
-        *)
-          JDK="${pkgs.jdk16_headless}"
-          ;;
-        esac
-        echo "$JDK"
-    '';
-  };
-
 
   myNixProfile = pkgs.writeText "my-profile" ''
-      export PATH=$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/sbin:/bin:/usr/sbin:/usr/bin
-      export MANPATH=$HOME/.nix-profile/share/man:/nix/var/nix/profiles/default/share/man:/usr/share/man
       export IDEA_VM_OPTIONS=~/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
 
-      export JAVA_HOME=${java_default}/${java_default_relpath}
+      NIXBIN=~/.nix-profile/bin
+      JDKBIN=$($NIXBIN/realpath $($NIXBIN/java_home -v 9))/bin
 
-      export PATH=''${JAVA_HOME}/bin:$PATH
-      export MANPATH=''${JAVA_HOME}/man:$MANPATH
+      typeset -U PATH path
+      path=( $JDKBIN $NIXBIN $HOME/bin $path )
 
       # install node globals in user dir
       export NPM_PACKAGES=$HOME/.npm-packages
       mkdir -p $NPM_PACKAGES
-
-      if ! [ -f "$HOME/.npmrc" ]; then
-        echo "prefix = $NPM_PACKAGES" >> ~/.npmrc
-      fi
-      export PATH="$NPM_PACKAGES/bin:$PATH"
-      export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
-      export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
       # aliases
       alias e='emacs -Q -nw'
@@ -74,7 +41,6 @@ let
         MAVEN_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=$PORT mvn
       }
     '';
-
 
 
   #
@@ -347,7 +313,7 @@ let
 
     nix-update = pkgs.writeShellScriptBin "nix-update" ''
       function usage {
-        echo "Usage: nix-update [[-a|--all] | [-n|--nix] [-p|--my-packages] [-e|--my-apps]] [-h | --help]"
+        echo "Usage: nix-update [[-a|--all] | [-n|--nix] [-x|--my-nix] [-p|--my-packages] [-e|--my-apps] [-t|--my-tools]] [-h | --help]"
         exit $1
       }
 
@@ -355,6 +321,12 @@ let
         installed=$(nix-env -q | grep my-apps | wc -l)
         possible=$(nix-instantiate --quiet --quiet -E 'with import <nixpkgs> { }; myApps' 2>&1 | grep error | wc -l)
         [ "$installed" -gt 0 ] && [ "$possible" -eq 0 ];
+      }
+
+      function runIf {
+        if [ "$1" = true ]; then
+          eval "set -x; $2; set +x"
+        fi
       }
 
       if [[ "$#" -eq 0 ]]; then
@@ -381,15 +353,42 @@ let
         shift
       done
 
-      [ "$DO_NIX" = true ] && nix-channel --update && nix-env -iA nixpkgs.nix nixpkgs.cacert;
-      [ "$DO_MY_NIX" = true ] && nix-env -iA nixpkgs.myNix;
-      [ "$DO_MY_PACKAGES" = true ] && nix-env -iA nixpkgs.myPackages;
-      [ "$DO_MY_APPS" = true ] && nix-env -iA nixpkgs.myApps && nix-link-macapps;
-      [ "$DO_MY_TOOLS" = true ] && nix-env -iA nixpkgs.myTools && nix-link-macapps;
+      runIf "$DO_NIX" "nix-channel --update && nix-env -iA nixpkgs.nix nixpkgs.cacert";
+      runIf "$DO_MY_NIX" "nix-env -iA nixpkgs.myNix";
+      runIf "$DO_MY_PACKAGES" "nix-env -iA nixpkgs.myPackages";
+      runIf "$DO_MY_APPS" "nix-env -iA nixpkgs.myApps && nix-link-macapps";
+      runIf "$DO_MY_TOOLS" "nix-env -iA nixpkgs.myTools && nix-link-macapps";
     '';
 
     nix-version = pkgs.writeShellScriptBin "nix-version" ''
       nix-instantiate --eval -A 'lib.version' '<nixpkgs>' | xargs
+    '';
+  };
+
+  javaEnv = rec {
+
+    jdk8 = pkgs.jdk8_headless;
+    jdk11 = pkgs.jdk11_headless;
+    jdk16 = pkgs.jdk16_headless;
+
+    java_home = pkgs.writeShellScriptBin "java_home" ''
+      if [ "$#" -ne 2 ] || [ "$1" != "-v" ] || [ "$2" -lt 8 ]; then
+        echo "Usage: java_home -v <version>";
+        exit 1;
+      fi
+      case "$2" in
+        8)
+          JDK="${jdk8}"
+          ;;
+        11)
+          JDK="${jdk11}"
+          ;;
+        *)
+          JDK="${jdk16}"
+          ;;
+      esac
+      JAVA_HOME=$(${pkgs.coreutils}/bin/realpath "$JDK/bin/..")
+      echo "$JAVA_HOME"
     '';
   };
 
@@ -403,7 +402,7 @@ pkgs.buildEnv {
     description = "ldeck's nix foundation";
     maintainers = [ "ldeck" ];
     platforms = platforms.all;
-    priority = hiPrio;
+    priority = -1;
   };
   paths = [
     (pkgs.runCommand "profile" {} ''
@@ -411,10 +410,12 @@ pkgs.buildEnv {
           cp ${myNixProfile} $out/etc/profile.d/my-nix-profile.sh
       '')
     ] ++
-    (toList javaEnv) ++
     (toList basicTools) ++
     (toList jqTools) ++
-    (toList nixTools);
-  pathsToLink = [ "/bin" "/share/man" "/share/doc" "/etc" ];
-  extraOutputsToInstall = [ "man" "doc" ];
+    (toList nixTools) ++
+    [
+      javaEnv.java_home
+    ];
+  pathsToLink = [ "/bin" "/share/doc" "/etc" ];
+  extraOutputsToInstall = [];
 }

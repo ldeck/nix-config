@@ -8,6 +8,12 @@
 
     myPackages = buildEnv {
       name = "my-packages";
+      meta = with lib; {
+        description = "ldeck's general packages";
+        maintainers = [ "ldeck" ];
+        platforms = platforms.all;
+        priority = 0;
+      };
       paths = [
         #nix
         niv
