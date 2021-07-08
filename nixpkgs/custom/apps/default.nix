@@ -75,6 +75,20 @@ let
   macOSApps = with installers.macOS; [
 
     (app rec {
+      name = "Authy";
+      appname = "${name} Desktop";
+      version = "1.8.3";
+      sourceRoot = "${appname}.app";
+      src = fetchurl {
+        url = "https://authy-electron-repository-production.s3.amazonaws.com/authy/stable/${version}/darwin/x64/Authy+Desktop-${version}.dmg";
+        sha256 = "7c276cabcacfdcde4c695f93b2065c4499c25849831e8316aaedb75750ccd559";
+      };
+      description = "Two-factor authentication software.";
+      homepage = "https://authy.com/";
+      appcast = "https://github.com/Homebrew/homebrew-cask/blob/HEAD/Casks/authy.rb";
+    })
+
+    (app rec {
       name = "Chromium";
       version = "841414";
       sourceRoot = "chrome-mac/${name}.app";
