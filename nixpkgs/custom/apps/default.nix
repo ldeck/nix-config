@@ -297,6 +297,19 @@ let
     })
 
     (app rec {
+      name = "Rectangle";
+      version = "0.48";
+      sourceRoot = "${name}.app";
+      src = fetchurl {
+        url = "https://github.com/rxhanson/Rectangle/releases/download/v${version}/Rectangle${version}.dmg";
+        sha256 = "02hi9qsb9c8wyaj2dzhi8xk0dr8an39ax2qcb92mz77x3vds0npq";
+      };
+      description = "Move and resize windows in macOS using keyboard shortcuts or snap areas.";
+      homepage = "https://rectangleapp.com";
+      appcast = "https://github.com/rxhanson/Rectangle/releases";
+    })
+
+    (app rec {
       name = "Signal";
       version = "5.4.0";
       sourceRoot = "${name}.app";
