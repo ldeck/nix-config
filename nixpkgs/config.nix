@@ -33,7 +33,7 @@
         # cloud
         ansible
         # aws-sam-cli
-        awscli2
+        #awscli2
         cloudfoundry-cli
         google-cloud-sdk
         cloud-sql-proxy
@@ -61,7 +61,7 @@
         geckodriver
         liquibase
         plantuml
-        python38Packages.yamllint
+        #python38Packages.yamllint
 
         #net
         #nss-cacert
