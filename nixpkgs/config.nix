@@ -1,5 +1,8 @@
 {
   allowUnfree = true;
+  permittedInsecurePackages = [
+    "openssl-1.0.2u"
+  ];
   packageOverrides = pkgs: with pkgs; rec {
 
     myNix = pkgs.callPackage ./custom/nix { pkgs = pkgs; };
