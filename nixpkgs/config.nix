@@ -60,7 +60,6 @@
         # devtools
         geckodriver
         liquibase
-        myEmacs
         plantuml
         python38Packages.yamllint
 
@@ -169,7 +168,26 @@
     myEmacsConfig = ./overlays/pkgs/emacs;
     myBaseDir = "${toString ./..}";
 
-    myEmacs = emacsWithPackages (epkgs:
+    spinner-file = "spinner-1.7.3.el";
+
+    spinner-lzip = builtins.fetchurl {
+      url = "https://elpa.gnu.org/packages/${spinner-file}.lz";
+      sha256 = "188i2r7ixva78qd99ksyh3jagnijpvzzjvvx37n57x8nkp8jc4i4";
+    };
+
+    emacsOverrides = self: super: rec {
+      spinner = super.spinner.override {
+        elpaBuild = args: super.elpaBuild (args // {
+	  src = pkgs.runCommandLocal spinner-file {} ''
+	    ${pkgs.lzip}/bin/lzip -d -c ${spinner-lzip} > $out
+	  '';
+	});
+      };
+    };
+
+    myEmacs = (hiPrio myEmacsWithPackages);
+    myEmacsWithPackages =(((pkgs.emacsPackagesGen pkgs.emacs).overrideScope' emacsOverrides).emacsWithPackages (epkgs: with epkgs;
+
       # CONFIG setup
       [
         (runCommand "default.el" {} ''
@@ -183,78 +201,79 @@
         '')
       ] ++
 
-      # ELPA packages
-      (with epkgs.elpaPackages; [
-        undo-tree
-      ]) ++
+      [
 
-      (with epkgs.melpaPackages; [
-        company
-        company-terraform
-        # counsel
-        dap-mode
-        dired-subtree
-        direnv
-        docker
-        docker-compose-mode
-        dockerfile-mode
-        dtrt-indent
-        dumb-jump
-        editorconfig
-        editorconfig-custom-majormode
-        editorconfig-domain-specific
-        editorconfig-generate
-        exec-path-from-shell
-        expand-region
-        flycheck
-        flycheck-plantuml
-        forge
-        gitlab-ci-mode
-        gitlab-ci-mode-flycheck
-        helm-flyspell
-        helm-lsp
-        hydra
-        ivy
-        lsp-java
-        lsp-metals
-        lsp-mode
-        lsp-treemacs
-        lsp-ui
-        magit
-        plantuml-mode
-        sbt-mode
-        scala-mode
-        symbol-overlay
-        terraform-doc
-        undo-propose
-        vterm
-        yasnippet
-      ]) ++
+      # elpa
+      spinner
+      undo-tree
 
-      # MELPA stable packages
-      (with epkgs.melpaStablePackages; [
-        ag
-        browse-at-remote
-        crux
-        expand-region
-        format-all
-        git-messenger
-        git-timemachine
-        helm
-        helm-ag
-        helm-descbinds
-        helm-projectile
-        mac-pseudo-daemon
-        markdown-mode
-        move-text
-        nix-mode
-        projectile
-        smartparens
-        terraform-mode
-        use-package
-        which-key
-        yaml-mode
-        zoom-window
-      ]));
+      # melpa
+      company
+      company-terraform
+      # counsel
+      dap-mode
+      dired-subtree
+      direnv
+      docker
+      docker-compose-mode
+      dockerfile-mode
+      dtrt-indent
+      dumb-jump
+      editorconfig
+      editorconfig-custom-majormode
+      editorconfig-domain-specific
+      editorconfig-generate
+      exec-path-from-shell
+      expand-region
+      flycheck
+      flycheck-plantuml
+      forge
+      gitlab-ci-mode
+      gitlab-ci-mode-flycheck
+      helm-flyspell
+      helm-lsp
+      hydra
+      ivy
+      lsp-java
+      lsp-metals
+      lsp-mode
+      lsp-treemacs
+      lsp-ui
+      magit
+      plantuml-mode
+      sbt-mode
+      scala-mode
+      symbol-overlay
+      #terraform-doc
+      undo-propose
+      vterm
+      yasnippet
+
+      # MELPA STABLE
+      ag
+      browse-at-remote
+      crux
+      expand-region
+      format-all
+      git-messenger
+      git-timemachine
+      helm
+      helm-ag
+      helm-descbinds
+      helm-projectile
+      mac-pseudo-daemon
+      markdown-mode
+      move-text
+      nix-mode
+      projectile
+      smartparens
+      #terraform-mode
+      use-package
+      which-key
+      yaml-mode
+      zoom-window
+
+      ]
+    ));
   };
 }
