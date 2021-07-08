@@ -28,7 +28,7 @@
 
         # bash scripts
         argbash
-        bash
+        #bash
 
         # cloud
         ansible
