@@ -44,7 +44,7 @@
         fluxctl
 
         #go
-        vgo2nix
+        #vgo2nix
 
         # java
         visualvm
