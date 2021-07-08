@@ -65,7 +65,7 @@
 
         #net
         #nss-cacert
-        openconnect
+        #openconnect
 
         #scala
         sbt
