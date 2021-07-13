@@ -7,3 +7,4 @@
 /jgit/config
 /nixpkgs/overlays/pkgs/emacs/flycheck_default.elc
 /custom/
+/direnv/
