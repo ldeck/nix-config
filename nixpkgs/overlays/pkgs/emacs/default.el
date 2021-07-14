@@ -10,6 +10,8 @@
 (setq gc-cons-threshold most-positive-fixnum
       file-name-handler-alist nil)
 
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; Restore defaults after startup
 ;; Lower threshold back to 8 MiB (default is 800kB)
 (add-hook 'emacs-startup-hook

@@ -225,6 +225,7 @@
   :config
   (setq lsp-completion-enable-additional-text-edit nil)
   (setq lsp-prefer-flymake nil)
+  (setq lsp-idle-delay 0.500)
   )
 
 ;; optionally
