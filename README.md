@@ -1,7 +1,12 @@
 # nix-config #
 
-My [nixos](https://nixos.org) nixpkgs single user config (macOS)
+My **DEPRECATED** [nixos](https://nixos.org) nixpkgs single user config (macOS)
 
+## Deprecated? ##
+
+Yes, this was my first adventure in nix, doing it the harder way without [home-manager](https://github.com/nix-community/home-manager).
+
+See my [nix-home](https://github.com/ldeck/nix-home) for a [niv](https://github.com/nmattia/niv)/[home-manager](https://github.com/nix-community/home-manager) based flexible config instead.
 
 ## Installation ##
 
